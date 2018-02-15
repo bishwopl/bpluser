@@ -1,0 +1,13 @@
+<h1><?= $this->translate('Register') ?></h1>
+
+<?php
+$form = $this->registerForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('bpl-user/register'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('autocomplete', 'off');
+?>
+
+<?= $this->partial('bpl-user/generic-form', ['form' => $form]) ?>
+
+<a href="<?php echo $this->url('bpl-user/login') ?>"><?php echo $this->translate('I already have an account'); ?></a>

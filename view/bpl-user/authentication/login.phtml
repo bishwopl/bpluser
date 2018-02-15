@@ -1,0 +1,15 @@
+<h1><?= $this->translate('Sign In') ?></h1>
+
+<?php
+$form = $this->loginForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('bpl-user/login'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('autocomplete', 'off');
+?>
+
+<?= $this->partial('bpl-user/generic-form', ['form' => $form]) ?>
+<p><a href="<?php echo $this->url('bpl-user/forgot-password') ?>"><?php echo $this->translate("Forgot your password?"); ?></a></p>
+<?php if ($this->enableRegistration) : ?>
+<?= $this->translate('Not registered?') ?> <a href="<?= $this->url('bpl-user/register') . ($this->redirect ? '?redirect='.$this->escapeUrl($this->redirect) : '') ?>"><?= $this->translate('Sign up!') ?></a>
+<?php endif; ?>

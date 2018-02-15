@@ -1,0 +1,27 @@
+<?php
+/**
+ * 
+ * @author Bishwo Prasad Lamichhane <bishwo.prasad@gmail.com>
+ */
+?>
+<h1>Registration Successful</h1>
+<p>
+    <?=
+    $this->translate(
+            'You have received this email because you registered to our domain.'
+    )
+    ?> 
+</p>
+<?php if ($this->resetEntity !== NULL) : ?>
+    <p> <?= $this->translate('To continue with the process, please click the link below:') ?></p>
+    <p>
+        <?=
+        $this->serverUrl(
+                $this->url('bpl-user/reset-password', [
+                    'userId' => $this->user->getId(),
+                    'token' => $this->resetEntity->getRequestKey()
+                ])
+        )
+        ?>   
+    </p>
+<?php endif; ?>

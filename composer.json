@@ -1,0 +1,37 @@
+{
+    "name": "bishwopl/bpluser",
+    "description": "An user registration and authentication module for ZF3 based on saeven/zf3-circlical-user",
+    "type": "library",
+    "homepage": "https://github.com/bishwopl/bpl-user",
+    "keywords": [
+        "user",
+        "zf3",
+        "user management",
+        "acl",
+        "bjyauthorize",
+        "authorization",
+        "auth",
+        "registration"
+    ],
+    "authors": [
+        {
+            "name": "Bishwo Prasad Lamichhane",
+            "email": "bishwo.prasad@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0.0",
+        "zendframework/zend-captcha": "^2.6",
+        "zendframework/zend-text": "^2.6",
+        "zendframework/zend-filter": "^2.7",
+        "zendframework/zend-i18n": "^2.7",
+        "phpmailer/phpmailer": "^5.2",
+        "saeven/zf3-circlical-user": "^0.2.1"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "BplUser\\": "src"
+        }
+    }
+}

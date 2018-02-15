@@ -1,0 +1,11 @@
+<?php
+/**
+ * 
+ * @author Bishwo Prasad Lamichhane <bishwo.prasad@gmail.com>
+ */
+?>
+<h1><?php echo $this->translate('Forgot your password?'); ?></h1>
+
+<p><?php echo sprintf($this->translate('A reminder has been sent to your e-mail address %s.'), $this->escapeHtml($this->email)); ?></p>
+
+<a href="<?php echo $this->url('bpl-user/login') ?>"><?php echo $this->translate('Back to login?'); ?></a>

@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * Login and logout actions
+ */
+
+namespace BplUser\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+use Zend\Form\Form;
+use BplUser\Provider\BplUserServiceInterface;
+use BplUser\Provider\ForgotPasswordOptionsInterface;
+
+class ForgotController extends AbstractActionController {
+
+    /**
+     * @var \BplUser\Provider\BplUserServiceInterface
+     */
+    protected $bplUserService;
+
+    /**
+     * @var \BplUser\Provider\ForgotPasswordOptionsInterface
+     */
+    protected $options;
+
+    /**
+     * @var \Zend\Form\Form
+     */
+    protected $forgotPasswordForm;
+    
+    /**
+     * @var \Zend\Form\Form
+     */
+    protected $resetPasswordForm;
+
+    /**
+     *
+     * @var type 
+     */
+    protected $translator;
+
+    public function __construct(
+    ForgotPasswordOptionsInterface $options, BplUserServiceInterface $bplUserService, Form $forgotPasswordForm, Form $resetPasswordForm,  $translator) {
+        $this->options = $options;
+        $this->bplUserService = $bplUserService;
+        $this->forgotPasswordForm = $forgotPasswordForm;
+        $this->resetPasswordForm = $resetPasswordForm;
+        $this->translator = $translator;
+    }
+
+    public function forgotPasswordAction() {
+        $data = $this->getRequest()->getPost()->toArray();
+        $this->forgotPasswordForm->setData($data);
+        $this->bplUserService->cleanExpiredForgotRequests();
+        $vm = new ViewModel();
+        $vm->setVariable('forgotPasswordForm', $this->forgotPasswordForm);
+        
+        if ($this->getRequest()->isPost() && $this->forgotPasswordForm->isValid()) {
+            $email = $data['email'];
+            $this->bplUserService->sendPasswordResetEmail($email);
+            $vm->setTemplate('bpl-user/sent');
+        }
+        return $vm;
+    }
+
+    public function resetPasswordAction() {
+        $userId = (int) $this->params()->fromRoute('userId', 0);
+        $token = (string) $this->params()->fromRoute('token', '');
+        $resetRecord = $this->bplUserService->getResetRecord($userId, $token);
+        
+        $vm = new ViewModel();
+        
+        if ($resetRecord == NULL || strlen($token)!==32) {
+            return $this->redirect()->toRoute('bpl-user/forgot-password');
+        }
+
+        $data = $this->getRequest()->getPost()->toArray();
+        $this->resetPasswordForm->setData($data);
+        
+        $vm->setVariables([
+            'resetPasswordForm' => $this->resetPasswordForm,
+            'resetRecord' => $resetRecord,
+        ]);
+        
+        if($this->getRequest()->isPost() && $this->resetPasswordForm->isValid()){
+            $user = $resetRecord->getUser();
+            $this->bpluser()->changePassword($user, $this->resetPasswordForm->get('password')->getValue());
+            $this->bplUserService->removePreviousResetRequests($user->getId());
+            $vm->setVariable('user', $user);
+            $vm->setTemplate('bpl-user/password-changed');
+        }
+        
+        return $vm;
+    }
+
+}
