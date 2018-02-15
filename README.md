@@ -65,4 +65,4 @@ Copy [config/bpluser.local.php.dist](https://github.com/bishwopl/bpluser/blob/ma
     $this->bpluser()->isAllowedAction($controllerName, $action);
 ```
 # To do 
-* Make autologout work
+
