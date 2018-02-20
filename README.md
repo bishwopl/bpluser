@@ -1,13 +1,18 @@
 # bpluser
 An user registration, authentication and authorization module for ZF3 based on [saeven/zf3-circlical-user](https://github.com/Saeven/zf3-circlical-user/)
 
+# Features
+* User Registration with/without 2-step verification
+* Forgot password feature
+* View helpers
+
 # Requirements
 * php: ^7.0.0
-* zendframework/zend-captcha: ^2.6
-* zendframework/zend-text: ^2.6
-* zendframework/zend-filter: ^2.7
-* zendframework/zend-i18n: ^2.7
-* phpmailer/phpmailer: ^5.2
+* [zendframework/zend-captcha: ^2.6](https://github.com/zendframework/zend-captcha)
+* [zendframework/zend-text: ^2.6](https://github.com/zendframework/zend-text)
+* [zendframework/zend-filter: ^2.7](https://github.com/zendframework/zend-filter)
+* [zendframework/zend-i18n: ^2.7](https://github.com/zendframework/zend-i18n)
+* [phpmailer/phpmailer: ^5.2](https://github.com/PHPMailer/PHPMailer)
 * [saeven/zf3-circlical-user: ^0.2.1](https://github.com/Saeven/zf3-circlical-user/)
     
 # Installation
