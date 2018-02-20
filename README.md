@@ -5,6 +5,7 @@ An user registration, authentication and authorization module for ZF3 based on [
 * User Registration
 * Forgot password feature
 * View helpers
+* Zend Developers Toolbar extention
 
 # Requirements
 * [php: ^7.0.0](https://secure.php.net/)
