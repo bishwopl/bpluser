@@ -7,7 +7,7 @@ An user registration, authentication and authorization module for ZF3 based on [
 * View helpers
 
 # Requirements
-* php: ^7.0.0
+* [php: ^7.0.0](https://secure.php.net/)
 * [zendframework/zend-captcha: ^2.6](https://github.com/zendframework/zend-captcha)
 * [zendframework/zend-text: ^2.6](https://github.com/zendframework/zend-text)
 * [zendframework/zend-filter: ^2.7](https://github.com/zendframework/zend-filter)
