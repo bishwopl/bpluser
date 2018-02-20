@@ -2,7 +2,7 @@
 An user registration, authentication and authorization module for ZF3 based on [saeven/zf3-circlical-user](https://github.com/Saeven/zf3-circlical-user/)
 
 # Features
-* User Registration with/without 2-step verification
+* User Registration
 * Forgot password feature
 * View helpers
 
