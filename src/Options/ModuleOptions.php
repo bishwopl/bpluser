@@ -47,11 +47,6 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
     protected $allowedLoginStates = [null, 1];
 
     /**
-     * @var String
-     */
-    protected $loginViewTemplate = 'bpl-user/login-view-template';
-
-    /**
      * Auto logout period in seconds
      * @var int 
      */
@@ -120,12 +115,6 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
      * @var type 
      */
     protected $changeProfileFormFactory = \BplUser\Form\ChangeProfile::class;
-    
-    /**
-     * @var string 
-     */
-    protected $changeProfileViewTemplate = 'bpl-user/change-profile-view-template';
-
 
     //Profile options end
     //Registration options start
@@ -187,12 +176,6 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
      * @var string 
      */
     protected $registrationEmailSubjectLine = 'Welcome to my domain';
-
-    /**
-     *
-     * @var string 
-     */
-    protected $registrationViewTemplate = 'bpl-user/registration-view-template';
 
     /**
      *
@@ -290,21 +273,6 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
     public function setAllowedLoginStates(Array $states) {
         $this->allowedLoginStates = $states;
         return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setLoginViewTemplate($loginViewTemplate) {
-        $this->loginViewTemplate = $loginViewTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLoginViewTemplate() {
-        return $this->loginViewTemplate;
     }
 
     /**
@@ -460,21 +428,6 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
     /**
      * {@inheritDoc}
      */
-    public function setRegistrationViewTemplate($registerViewTemplate) {
-        $this->registrationViewTemplate = $registerViewTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getRegistrationViewTemplate() {
-        return $this->registrationViewTemplate;
-    }
-
-        /**
-     * {@inheritDoc}
-     */
     public function setAuthIdentityFields($authIdentityFields) {
         $this->authIdentityFields = $authIdentityFields;
         return $this;
@@ -620,21 +573,6 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
      */
     public function getChangeProfileFormFactory() {
         return $this->changeProfileFormFactory;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function setChangeProfileViewTemplate($changeProfileViewTemplate) {
-        $this->changeProfileViewTemplate = $changeProfileViewTemplate;
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getChangeProfileViewTemplate() {
-        return $this->changeProfileViewTemplate;
     }
 
     /**

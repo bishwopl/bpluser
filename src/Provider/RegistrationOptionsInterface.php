@@ -137,17 +137,6 @@ interface RegistrationOptionsInterface {
     public function getRegistrationEmailSubjectLine();
 
     /**
-     * Set view template for registration form
-     * @param string $registerViewTemplate
-     */
-    public function setRegistrationViewTemplate($registerViewTemplate);
-
-    /**
-     * Get view template for registration form
-     */
-    public function getRegistrationViewTemplate();
-
-    /**
      * Set view template for email which will be used to create HTML email to
      * notify user of registration
      * @param type $registerEmailTemplate

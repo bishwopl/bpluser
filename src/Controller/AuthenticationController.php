@@ -49,7 +49,6 @@ class AuthenticationController extends AbstractActionController {
         $vm = new ViewModel();
         $user = $this->auth()->getIdentity();
         $vm->setVariable('user', $user);
-        $vm->setTemplate('bpl-user/user-profile-template');
         return $vm;
     }
 
@@ -57,9 +56,6 @@ class AuthenticationController extends AbstractActionController {
         $this->retrunIfLoggedIn();
         $user = NULL;
         $vm = new ViewModel();
-        if ($this->options->getLoginViewTemplate() !== '') {
-            $vm->setTemplate($this->options->getLoginViewTemplate());
-        }
 
         $post = $this->getRequest()->getPost()->toArray();
         $this->loginForm->setData($post);

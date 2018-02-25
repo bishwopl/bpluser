@@ -43,17 +43,6 @@ interface AuthenticationOptionsInterface {
     public function getAllowedLoginStates();
 
     /**
-     * Set view template for login form
-     * @param string $loginViewTemplate
-     */
-    public function setLoginViewTemplate($loginViewTemplate);
-
-    /**
-     * get template for login form
-     */
-    public function getLoginViewTemplate();
-
-    /**
      * Set duration of inactivity (in seconds) after which user is 
      * logged out automatically
      * @param type $autoLogoutPeriod

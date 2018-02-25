@@ -42,7 +42,6 @@ class ChangeProfileController extends AbstractActionController {
     public function changeProfileAction() {
         $vm = new ViewModel();
         $profileChanged = false;
-        $vm->setTemplate($this->options->getChangeProfileViewTemplate());
 
         $user = $this->auth()->getIdentity();
         $this->changeProfileForm->bind($user);

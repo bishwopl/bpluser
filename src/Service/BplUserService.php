@@ -202,7 +202,7 @@ class BplUserService implements BplUserServiceInterface {
      */
     protected function getMailer() {
         if ($this->mailer == NULL) {
-            $this->mailer = new \PHPMailer();
+            $this->mailer = new \PHPMailer\PHPMailer\PHPMailer();
             $smtpOptions = $this->options->getSmtpOptions();
             if ($this->options->getUseSmtp()) {
                 $this->mailer->isSMTP();

@@ -14,15 +14,4 @@ interface ProfileOptionsInterface {
      * Get form factory for user profile modification
      */
     public function getChangeProfileFormFactory();
-    
-    /**
-     * Set view template for user profile modification
-     * @param string $changeProfileViewTemplate
-     */
-    public function setChangeProfileViewTemplate($changeProfileViewTemplate);
-
-    /**
-     * Get view template for user profile modification
-     */
-    public function getChangeProfileViewTemplate();
 }
