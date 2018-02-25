@@ -195,6 +195,7 @@ return [
         'template_map' => [
             'user/401' => __DIR__ . '/../view/bpl-user/authentication/401.phtml',
             'user/403' => __DIR__ . '/../view/bpl-user/authentication/403.phtml',
+            'bpl-user/user-profile-template' => __DIR__ . '/../view/bpl-user/authentication/index.phtml',
             'bpl-user/login-view-template' => __DIR__ . '/../view/bpl-user/authentication/login.phtml',
             'bpl-user/generic-form' => __DIR__ . '/../view/bpl-user/form/_form.phtml',
             'bpl-user/registration-view-template' => __DIR__ . '/../view/bpl-user/register/register.phtml',
