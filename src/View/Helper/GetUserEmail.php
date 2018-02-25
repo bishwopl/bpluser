@@ -16,6 +16,7 @@ class GetUserEmail extends AbstractHelper
 
     public function __invoke()
     {
+        $email = NULL;
         $user = $this->authenticationService->getIdentity();
         if($user instanceof \CirclicalUser\Provider\UserInterface){
             $email = $user->getEmail();

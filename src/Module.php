@@ -23,6 +23,10 @@ class Module {
                     $accessService = $e->getServiceLocator()->get(\CirclicalUser\Service\AccessService::class);
                     return new \BplUser\View\Helper\IsAllowed($accessService);
                 },
+                'getBplUserIdentity' => function($e) {
+                    $authenticationService = $e->getServiceLocator()->get(\CirclicalUser\Service\AuthenticationService::class);
+                    return new \BplUser\View\Helper\GetBplUserIdentity($authenticationService);
+                },
             ],
         ];
     }
