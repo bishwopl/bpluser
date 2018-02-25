@@ -3,8 +3,7 @@
 namespace BplUser\Collector\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 use BplUser\Collector\BplUserCollector;
 use CirclicalUser\Service\AuthenticationService;
 
@@ -18,17 +17,9 @@ class BplUserCollectorFactory implements FactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         $user = $serviceLocator->get(AuthenticationService::class)->getIdentity();
         return new BplUserCollector($user);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
-    {
-        return $this->createService($serviceLocator);
     }
 }

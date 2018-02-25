@@ -9,7 +9,6 @@ namespace BplUser\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Form\Form;
-use BplUser\Service\BplUserService;
 use BplUser\Provider\AuthenticationControllerOptionsInterface;
 use BplUser\Provider\BplUserServiceInterface;
 
@@ -34,7 +33,7 @@ class AuthenticationController extends AbstractActionController {
     /**
      * 
      * @param AuthenticationControllerOptionsInterface $options
-     * @param BplUserService $bplUserService
+     * @param BplUserServiceInterface $bplUserService
      * @param Form $loginForm
      * @param type $translator
      */
@@ -50,6 +49,7 @@ class AuthenticationController extends AbstractActionController {
         $vm = new ViewModel();
         $user = $this->auth()->getIdentity();
         $vm->setVariable('user', $user);
+        $vm->setTemplate('bpl-user/user-profile-template');
         return $vm;
     }
 

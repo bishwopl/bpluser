@@ -72,10 +72,15 @@ $forgotPasswordOptions = [
 /**
  * Form factories for registration and change profile actions
  * This is useful if extra elements is needed for registration
+ * 
+ * Also provides configurable profile index page for user after login,
+ * user identity will be injected into the view template; extra variables 
+ * can be added using view plug-in
  */
 $profileOptions = [
     'change_profile_form_factory' => \BplUser\Form\ChangeProfile::class,
     'change_profile_view_template' => 'bpl-user/change-profile-view-template',
+    'bpl-user/user-profile-template' => __DIR__ . '/../view/bpl-user/authentication/index.phtml',
 ];
 
 /**
