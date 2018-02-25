@@ -59,7 +59,7 @@ class ForgotController extends AbstractActionController {
         if ($this->getRequest()->isPost() && $this->forgotPasswordForm->isValid()) {
             $email = $data['email'];
             $this->bplUserService->sendPasswordResetEmail($email);
-            $vm->setTemplate('bpl-user/sent');
+            $vm->setVariable('sent',true);
         }
         return $vm;
     }
@@ -88,7 +88,7 @@ class ForgotController extends AbstractActionController {
             $this->bpluser()->changePassword($user, $this->resetPasswordForm->get('password')->getValue());
             $this->bplUserService->removePreviousResetRequests($user->getId());
             $vm->setVariable('user', $user);
-            $vm->setTemplate('bpl-user/password-changed');
+            $vm->setVariable('changed',true);
         }
         
         return $vm;

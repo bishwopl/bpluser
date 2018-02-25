@@ -14,7 +14,6 @@ $authenticationOptions = [
     'logout_redirect_route' => 'home',
     'enable_user_state' => true,
     'allowed_login_states' => [0,1],
-    'login_view_template' => 'bpl-user/login-view-template',
     'auto_logout_period' => 1800,
 ];
 
@@ -79,8 +78,6 @@ $forgotPasswordOptions = [
  */
 $profileOptions = [
     'change_profile_form_factory' => \BplUser\Form\ChangeProfile::class,
-    'change_profile_view_template' => 'bpl-user/change-profile-view-template',
-    'bpl-user/user-profile-template' => __DIR__ . '/../view/bpl-user/authentication/index.phtml',
 ];
 
 /**
@@ -110,7 +107,6 @@ $registrationOptions = [
     ],
     'registration_form_factory' => \BplUser\Form\Register::class,
     'registration_email_subject_line' => 'Welcome to my domain',
-    'registration_view_template' => 'bpl-user/registration-view-template',
     'registration_email_template' => 'bpl-user/registration-email-template',
 ];
 

@@ -53,9 +53,6 @@ class RegisterController extends AbstractActionController {
         }
         
         $vm = new ViewModel();
-        if ($this->options->getRegistrationViewTemplate() !== '') {
-            $vm->setTemplate($this->options->getRegistrationViewTemplate());
-        }
 
         $user = false;
         $post = $this->getRequest()->getPost()->toArray();
@@ -99,7 +96,7 @@ class RegisterController extends AbstractActionController {
             $this->bplUserService->sendRegistrationSuccessEmail($user);
             $vm->setVariable('user', $user);
             $vm->setVariable('emailVerification', true);
-            $vm->setTemplate('bpl-user/registration-email-sent');
+            $vm->setVariable('registered', true);
         }
 
         if ($user !== false && !$this->options->getEnableEmailVerification()) {
