@@ -36,10 +36,19 @@ return [
             Form\ChangePassword::class => Form\Factory\ChangePasswordFormFactory::class,
             Form\ChangeProfile::class => Form\Factory\ChangeProfileFormFactory::class,
             Collector\BplUserCollector::class => Collector\Factory\BplUserCollectorFactory::class,
-            Mapper\UserPasswordResetMapper::class => Mapper\Factory\UserPasswordResetMapperFactory::class
+            Mapper\UserPasswordResetMapper::class => Mapper\Factory\UserPasswordResetMapperFactory::class,
+            Listener\UserEntityListener::class => Listener\Factory\UserEntityListenerFactory::class
         ],
     ],
     'doctrine' => [
+        'eventmanager' => [
+            'orm_default' => [
+                'subscribers' => [
+                    \BplUser\Listener\UserEntityListener::class
+                ],
+            ],
+        ],
+        
         'driver' => [
             __NAMESPACE__ . '_driver' => [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
