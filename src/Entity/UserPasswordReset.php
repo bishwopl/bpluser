@@ -3,7 +3,6 @@
 namespace BplUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use BplUser\Entity\User;
 use BplUser\Provider\UserPasswordResetInterface;
 
 /**
@@ -31,9 +30,9 @@ class UserPasswordReset implements UserPasswordResetInterface
     private $requestTime;
 
     /**
-     * @var \BplUser\Entity\User
+     * @var \BplUser\Provider\BplUserInterface
      *
-     * @ORM\ManyToOne(targetEntity="BplUser\Entity\User")
+     * @ORM\ManyToOne(targetEntity="\BplUser\Provider\BplUserInterface")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
