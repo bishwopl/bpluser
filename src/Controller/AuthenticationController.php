@@ -11,6 +11,7 @@ use Zend\View\Model\ViewModel;
 use Zend\Form\Form;
 use BplUser\Provider\AuthenticationControllerOptionsInterface;
 use BplUser\Provider\BplUserServiceInterface;
+use Zend\Session\Container;
 
 class AuthenticationController extends AbstractActionController {
 
@@ -70,6 +71,8 @@ class AuthenticationController extends AbstractActionController {
                 ) {
                     return $this->forward()->dispatch(AuthenticationController::class, ['action' => 'logout']);
                 }
+                $session = new Container($user->getId() . '_lastActivityTimestamp');
+                $session->lastActivityTimestamp = time();
             } catch (\Exception $ex) {
                 
             }
