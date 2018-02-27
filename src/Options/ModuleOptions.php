@@ -287,7 +287,7 @@ AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {
      * {@inheritDoc}
      */
     public function getAutoLogoutPeriod() {
-        return $this->getAutoLogoutPeriod();
+        return $this->autoLogoutPeriod;
     }
 
     /**

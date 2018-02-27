@@ -2,12 +2,16 @@
 
 namespace BplUser;
 
+use Zend\Console\Console;
+use Zend\Mvc\MvcEvent;
+use Zend\Session\Container;
+
 class Module {
 
     public function getConfig() {
         return include __DIR__ . '/../config/module.config.php';
     }
-    
+
     public function getViewHelperConfig() {
         return [
             'factories' => [
@@ -30,4 +34,37 @@ class Module {
             ],
         ];
     }
+
+    public function onBootstrap(MvcEvent $mvcEvent) {
+        if (Console::isConsole()) {
+            return;
+        }
+        $application = $mvcEvent->getApplication();
+        $serviceLocator = $application->getServiceManager();
+        $authorizationService = $serviceLocator->get(\CirclicalUser\Service\AuthenticationService::class);
+        $user = $authorizationService->getIdentity();
+        $time = time();
+        
+        if ($user !== NULL) {
+            $session = new Container($user->getId() . '_lastActivityTimestamp');
+        }
+        
+        if ($user !== NULL && $session->offsetExists('lastActivityTimestamp')) {
+            $options = $serviceLocator->get(\BplUser\Options\ModuleOptions::class);
+            $autoloagoutPeriod = $options->getAutoLogoutPeriod();
+            
+            $lastActivityTimestamp = $session->lastActivityTimestamp;
+            
+            if ($time - $lastActivityTimestamp > $autoloagoutPeriod) {
+                $session->offsetUnset('lastActivityTimestamp');
+                $authorizationService->clearIdentity();
+                $mvcEvent->stopPropagation(TRUE);
+            }
+        }
+
+        if ($user !== NULL) {
+            $session->lastActivityTimestamp = $time;
+        }
+    }
+
 }
