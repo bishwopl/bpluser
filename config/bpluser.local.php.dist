@@ -205,7 +205,7 @@ $circlical = [
 
 return [
     'bpl_user' => array_merge(
-            $authenticationOptions, $emailOptions, $forgotPasswordOptions, $registrationOptions
+            $authenticationOptions, $profileOptions, $emailOptions, $forgotPasswordOptions, $registrationOptions
     ),
     'circlical' => $circlical
 ];
