@@ -71,3 +71,4 @@ Copy [config/bpluser.local.php.dist](https://github.com/bishwopl/bpluser/blob/ma
     $this->bpluser()->isAllowedAction($controllerName, $action);
 ```
 # To do 
+* Add Remember Me feature
