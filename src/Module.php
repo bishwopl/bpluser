@@ -16,19 +16,19 @@ class Module {
         return [
             'factories' => [
                 'getUserEmail' => function($e) {
-                    $authenticationService = $e->getServiceLocator()->get(\CirclicalUser\Service\AuthenticationService::class);
+                    $authenticationService = $e->get(\CirclicalUser\Service\AuthenticationService::class);
                     return new \BplUser\View\Helper\GetUserEmail($authenticationService);
                 },
                 'getUserRoles' => function($e) {
-                    $accessService = $e->getServiceLocator()->get(\CirclicalUser\Service\AccessService::class);
+                    $accessService = $e->get(\CirclicalUser\Service\AccessService::class);
                     return new \BplUser\View\Helper\GetUserRoles($accessService);
                 },
                 'isAllowed' => function($e) {
-                    $accessService = $e->getServiceLocator()->get(\CirclicalUser\Service\AccessService::class);
+                    $accessService = $e->(\CirclicalUser\Service\AccessService::class);
                     return new \BplUser\View\Helper\IsAllowed($accessService);
                 },
                 'getBplUserIdentity' => function($e) {
-                    $authenticationService = $e->getServiceLocator()->get(\CirclicalUser\Service\AuthenticationService::class);
+                    $authenticationService = $e->get(\CirclicalUser\Service\AuthenticationService::class);
                     return new \BplUser\View\Helper\GetBplUserIdentity($authenticationService);
                 },
             ],
