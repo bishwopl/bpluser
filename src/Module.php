@@ -24,7 +24,7 @@ class Module {
                     return new \BplUser\View\Helper\GetUserRoles($accessService);
                 },
                 'isAllowed' => function($e) {
-                    $accessService = $e->(\CirclicalUser\Service\AccessService::class);
+                    $accessService = $e->get(\CirclicalUser\Service\AccessService::class);
                     return new \BplUser\View\Helper\IsAllowed($accessService);
                 },
                 'getBplUserIdentity' => function($e) {
