@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 12, 2017 at 11:56 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Apr 04, 2018 at 11:44 AM
+-- Server version: 10.0.34-MariaDB
+-- PHP Version: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `zf3test`
+-- Database: `zf3user`
 --
 
 -- --------------------------------------------------------
@@ -60,14 +60,6 @@ CREATE TABLE `acl_roles` (
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `acl_roles`
---
-
-INSERT INTO `acl_roles` (`id`, `parent_id`, `name`) VALUES
-(1, NULL, 'guest'),
-(2, NULL, 'user');
-
 -- --------------------------------------------------------
 
 --
@@ -85,8 +77,7 @@ CREATE TABLE `users` (
   `zip` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `state` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `timeRegistered` datetime NOT NULL,
-  `hasProfileImage` int(10) UNSIGNED DEFAULT NULL
+  `timeRegistered` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -127,6 +118,21 @@ CREATE TABLE `users_auth_logs` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `auth_time` datetime NOT NULL,
   `ip_address` char(16) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_auth_reset`
+--
+
+CREATE TABLE `users_auth_reset` (
+  `id` int(11) NOT NULL,
+  `auth_user_id` int(10) UNSIGNED DEFAULT NULL,
+  `token` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
+  `request_time` datetime NOT NULL,
+  `request_ip_address` char(16) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -207,6 +213,13 @@ ALTER TABLE `users_auth_logs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_auth_reset`
+--
+ALTER TABLE `users_auth_reset`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_4BD441ACE94AF366` (`auth_user_id`);
+
+--
 -- Indexes for table `users_roles`
 --
 ALTER TABLE `users_roles`
@@ -230,26 +243,37 @@ ALTER TABLE `user_password_reset`
 --
 ALTER TABLE `acl_actions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `acl_actions_users`
 --
 ALTER TABLE `acl_actions_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `acl_roles`
 --
 ALTER TABLE `acl_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users_auth_logs`
 --
 ALTER TABLE `users_auth_logs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users_auth_reset`
+--
+ALTER TABLE `users_auth_reset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -271,6 +295,12 @@ ALTER TABLE `acl_actions_users`
 --
 ALTER TABLE `acl_roles`
   ADD CONSTRAINT `FK_32A76378727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `acl_roles` (`id`);
+
+--
+-- Constraints for table `users_auth_reset`
+--
+ALTER TABLE `users_auth_reset`
+  ADD CONSTRAINT `FK_4BD441ACE94AF366` FOREIGN KEY (`auth_user_id`) REFERENCES `users_auth` (`user_id`);
 
 --
 -- Constraints for table `users_roles`
