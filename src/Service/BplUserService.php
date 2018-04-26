@@ -210,7 +210,7 @@ class BplUserService implements BplUserServiceInterface {
                   0 = off (for production use)
                   1 = client messages
                   2 = client and server messages */
-                $this->mailer->SMTPDebug = 1;
+                $this->mailer->SMTPDebug = 0;
                 /* Ask for HTML-friendly debug output */
                 $this->mailer->Debugoutput = 'html';
                 $this->mailer->SMTPSecure = 'ssl';
