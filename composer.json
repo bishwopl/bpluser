@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": "^7",
-        "saeven/zf3-circlical-user": "^1"
+        "bishwopl/zf3-circlical-user": "^1"
 
     },
     "autoload": {
