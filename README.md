@@ -9,12 +9,8 @@ An user registration, authentication and authorization module for ZF3 based on [
 
 # Requirements
 * [php: ^7.0.0](https://secure.php.net/)
-* [zendframework/zend-captcha: ^2.6](https://github.com/zendframework/zend-captcha)
-* [zendframework/zend-text: ^2.6](https://github.com/zendframework/zend-text)
-* [zendframework/zend-filter: ^2.7](https://github.com/zendframework/zend-filter)
-* [zendframework/zend-i18n: ^2.7](https://github.com/zendframework/zend-i18n)
-* [phpmailer/phpmailer: ^5.2](https://github.com/PHPMailer/PHPMailer)
-* [saeven/zf3-circlical-user: ^0.2.1](https://github.com/Saeven/zf3-circlical-user/)
+* [phpmailer/phpmailer: ^6](https://github.com/PHPMailer/PHPMailer)
+* [bishwopl/zf3-circlical-user: ^1](https://github.com/Saeven/zf3-circlical-user/)
     
 # Installation
 * Run following from project root directory 
