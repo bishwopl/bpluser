@@ -22,11 +22,6 @@
     ],
     "require": {
         "php": "^7",
-        "zendframework/zend-captcha": "^2",
-        "zendframework/zend-text": "^2",
-        "zendframework/zend-filter": "^2",
-        "zendframework/zend-i18n": "^2",
-        "phpmailer/phpmailer": "^6",
         "saeven/zf3-circlical-user": "^1"
 
     },
