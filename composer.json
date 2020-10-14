@@ -22,7 +22,8 @@
     ],
     "require": {
         "php": "^7",
-        "bishwopl/zf3-circlical-user": "^1"
+        "bishwopl/zf3-circlical-user": "^1",
+        "phpmailer/phpmailer": "^6"
 
     },
     "autoload": {
