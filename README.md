@@ -11,9 +11,9 @@ An user registration, authentication and authorization module for Laminas-MVC ba
 * [php: ^7.0.0](https://secure.php.net/)
 * [phpmailer/phpmailer: ^6](https://github.com/PHPMailer/PHPMailer)
 * [bishwopl/zf3-circlical-user: ^1](https://github.com/Saeven/zf3-circlical-user/)
-* [laminas/laminas-text: ^2.7] (https://github.com/Saeven/laminas/laminas-text/)
-* [laminas/laminas-captcha: ^2.9] (https://github.com/Saeven/laminas/laminas-text/)
-* [laminas/laminas-mvc-form: ^1.0] (https://github.com/Saeven/laminas/laminas-mvc-form/)
+* [laminas/laminas-text: ^2.7](https://github.com/Saeven/laminas/laminas-text/)
+* [laminas/laminas-captcha: ^2.9](https://github.com/Saeven/laminas/laminas-text/)
+* [laminas/laminas-mvc-form: ^1.0](https://github.com/Saeven/laminas/laminas-mvc-form/)
     
 # Installation
 * Run following from project root directory 
