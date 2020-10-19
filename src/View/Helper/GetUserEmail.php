@@ -1,6 +1,6 @@
 <?php
 namespace BplUser\View\Helper;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class GetUserEmail extends AbstractHelper
 {

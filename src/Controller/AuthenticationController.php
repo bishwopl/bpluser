@@ -6,12 +6,12 @@
 
 namespace BplUser\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Form\Form;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
+use Laminas\Form\Form;
 use BplUser\Provider\AuthenticationControllerOptionsInterface;
 use BplUser\Provider\BplUserServiceInterface;
-use Zend\Session\Container;
+use Laminas\Session\Container;
 
 class AuthenticationController extends AbstractActionController {
 
@@ -26,7 +26,7 @@ class AuthenticationController extends AbstractActionController {
     protected $options;
 
     /**
-     * @var \Zend\Form\Form
+     * @var \Laminas\Form\Form
      */
     protected $loginForm;
     protected $translator;

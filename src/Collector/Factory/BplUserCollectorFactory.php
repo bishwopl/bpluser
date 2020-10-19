@@ -3,7 +3,7 @@
 namespace BplUser\Collector\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use BplUser\Collector\BplUserCollector;
 use CirclicalUser\Service\AuthenticationService;
 

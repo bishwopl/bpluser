@@ -4,7 +4,7 @@ namespace BplUser\Listener\Factory;
 
 use BplUser\Listener\UserEntityListener;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class UserEntityListenerFactory implements FactoryInterface
 {

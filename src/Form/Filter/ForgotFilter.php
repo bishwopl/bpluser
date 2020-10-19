@@ -1,6 +1,6 @@
 <?php
 namespace BplUser\Form\Filter;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
  
 class ForgotFilter extends InputFilter {
  
@@ -10,11 +10,11 @@ class ForgotFilter extends InputFilter {
             'name' => 'email',
             'required' => true,
             'filters' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
                 [
-                    'name' => \Zend\Validator\EmailAddress::class
+                    'name' => \Laminas\Validator\EmailAddress::class
                 ]
             ],
         ]);

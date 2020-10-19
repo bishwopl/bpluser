@@ -7,8 +7,8 @@
 
 namespace BplUser\Form;
 
-use Zend\Form\Form;
-use Zend\Form\Element;
+use Laminas\Form\Form;
+use Laminas\Form\Element;
 use BplUser\Provider\RegistrationOptionsInterface;
 
 class Register extends Form {
@@ -62,7 +62,7 @@ class Register extends Form {
         if ($this->registerOptions->getUseRegistrationFormCaptcha()) {
             $this->add([
                 'name' => 'captcha',
-                'type' => \Zend\Form\Element\Captcha::class,
+                'type' => \Laminas\Form\Element\Captcha::class,
                 'options' => [
                     'label' => 'Please type the following text',
                     'captcha' => $this->registerOptions->getFormCaptchaOptions(),

@@ -2,9 +2,9 @@
 
 namespace BplUser;
 
-use Zend\Console\Console;
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
+use Laminas\Console\Console;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Session\Container;
 
 class Module {
 

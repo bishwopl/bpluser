@@ -2,8 +2,8 @@
 
 namespace BplUser;
 
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
+use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 
 return [
     'controllers' => [
@@ -53,7 +53,9 @@ return [
             __NAMESPACE__ . '_driver' => [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
-                'paths' => __DIR__ . '/../src/Entity',
+                'paths' => [
+                    __DIR__ . '/../src/Entity',
+                ],
             ],
             'orm_default' => [
                 'drivers' => [
@@ -210,7 +212,7 @@ return [
             'zend-developer-tools/toolbar/bpl-user-data' => __DIR__ . '/../view/zend-developer-tools/toolbar/bpl-user-data.phtml',
         ]
     ],
-    'zenddevelopertools' => [
+    'laminas-developer-tools' => [
         'profiler' => [
             'collectors' => [
                 Collector\BplUserCollector::class => Collector\BplUserCollector::class,
@@ -218,7 +220,7 @@ return [
         ],
         'toolbar' => [
             'entries' => [
-                Collector\BplUserCollector::class => 'zend-developer-tools/toolbar/bpl-user-data',
+                Collector\BplUserCollector::class => 'laminas-developer-tools/toolbar/bpl-user-data',
             ],
         ],
     ],

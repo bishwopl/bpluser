@@ -6,7 +6,7 @@
  */
 namespace BplUser\Controller\Factory;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use BplUser\Controller\ChangePasswordController;
 

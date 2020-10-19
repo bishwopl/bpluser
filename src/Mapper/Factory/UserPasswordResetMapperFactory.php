@@ -6,7 +6,7 @@
  */
 namespace BplUser\Mapper\Factory;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use BplUser\Mapper\UserPasswordResetMapper;
 class UserPasswordResetMapperFactory implements FactoryInterface {

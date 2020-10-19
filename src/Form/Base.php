@@ -2,8 +2,8 @@
 
 namespace BplUser\Form;
 
-use Zend\Form\Form;
-use Zend\Form\Element;
+use Laminas\Form\Form;
+use Laminas\Form\Element;
 
 class Base extends Form {
 
@@ -74,7 +74,7 @@ class Base extends Form {
 
         $this->add([
             'name' => 'id',
-            'type' => 'Zend\Form\Element\Hidden',
+            'type' => 'Laminas\Form\Element\Hidden',
             'attributes' => [
                 'type' => 'hidden'
             ],

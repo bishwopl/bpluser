@@ -7,7 +7,7 @@
 namespace BplUser\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use BplUser\Controller\Plugin\BplUserControllerPlugin;
 use CirclicalUser\Service\AuthenticationService;
 use CirclicalUser\Service\AccessService;

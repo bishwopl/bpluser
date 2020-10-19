@@ -6,7 +6,7 @@
  */
 
 namespace BplUser\Form\Filter;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
  
 class ChangeEmailFilter extends InputFilter {
  
@@ -16,10 +16,10 @@ class ChangeEmailFilter extends InputFilter {
             'name' => 'email',
             'required' => true,
             'filter' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
-                ['name' => \Zend\Validator\EmailAddress::class]
+                ['name' => \Laminas\Validator\EmailAddress::class]
             ]
         ]);
         
@@ -33,7 +33,7 @@ class ChangeEmailFilter extends InputFilter {
             'required' => true,
             'validators' => [
                 [
-                    'name' => \Zend\Validator\Csrf::class
+                    'name' => \Laminas\Validator\Csrf::class
                 ]
             ]
         ]);

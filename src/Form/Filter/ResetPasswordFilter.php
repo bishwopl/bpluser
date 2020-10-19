@@ -7,7 +7,7 @@
 
 namespace BplUser\Form\Filter;
 
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 class ResetPasswordFilter extends InputFilter {
 
@@ -23,7 +23,7 @@ class ResetPasswordFilter extends InputFilter {
             'required' => true,
             'validators' => [
                 [
-                    'name' => \Zend\Validator\Identical::class,
+                    'name' => \Laminas\Validator\Identical::class,
                     'options' => [
                         'token' => 'password'
                     ]

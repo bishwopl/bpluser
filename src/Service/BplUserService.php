@@ -2,8 +2,8 @@
 
 namespace BplUser\Service;
 
-use Zend\View\Renderer\RendererInterface;
-use Zend\Math\Rand;
+use Laminas\View\Renderer\RendererInterface;
+use Laminas\Math\Rand;
 use BplUser\Provider\BplUserInterface;
 use CirclicalUser\Provider\UserProviderInterface;
 use CirclicalUser\Provider\RoleProviderInterface;
@@ -42,7 +42,7 @@ class BplUserService implements BplUserServiceInterface {
 
     /**
      *
-     * @var \Zend\View\Renderer\RendererInterface 
+     * @var \Laminas\View\Renderer\RendererInterface 
      */
     protected $viewRenderer;
 
@@ -188,7 +188,7 @@ class BplUserService implements BplUserServiceInterface {
      * @param bool $isTerminal
      */
     protected function getHtmlFromLayout($layout, $params = [], $isTerminal = true) {
-        $vm = new \Zend\View\Model\ViewModel($params);
+        $vm = new \Laminas\View\Model\ViewModel($params);
         $vm->setTerminal($isTerminal);
         $vm->setTemplate($layout);
         $html = $this->viewRenderer->render($vm);

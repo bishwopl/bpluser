@@ -2,8 +2,8 @@
 
 namespace BplUser\Collector;
 
-use Zend\Mvc\MvcEvent;
-use ZendDeveloperTools\Collector\AbstractCollector;
+use Laminas\Mvc\MvcEvent;
+use Laminas\DeveloperTools\Collector\AbstractCollector;
 use CirclicalUser\Provider\UserInterface;
 /**
  * BplUser Data Collector.

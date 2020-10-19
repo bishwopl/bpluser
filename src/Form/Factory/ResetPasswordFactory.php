@@ -7,7 +7,7 @@
 
 namespace BplUser\Form\Factory;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 
 class ResetPasswordFactory implements FactoryInterface {

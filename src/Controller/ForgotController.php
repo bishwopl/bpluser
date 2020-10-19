@@ -6,9 +6,9 @@
 
 namespace BplUser\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Zend\Form\Form;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
+use Laminas\Form\Form;
 use BplUser\Provider\BplUserServiceInterface;
 use BplUser\Provider\ForgotPasswordOptionsInterface;
 
@@ -25,12 +25,12 @@ class ForgotController extends AbstractActionController {
     protected $options;
 
     /**
-     * @var \Zend\Form\Form
+     * @var \Laminas\Form\Form
      */
     protected $forgotPasswordForm;
     
     /**
-     * @var \Zend\Form\Form
+     * @var \Laminas\Form\Form
      */
     protected $resetPasswordForm;
 

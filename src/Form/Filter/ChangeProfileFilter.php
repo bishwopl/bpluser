@@ -6,7 +6,7 @@
  */
 
 namespace BplUser\Form\Filter;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
  
 class ChangeProfileFilter extends InputFilter {
  
@@ -16,10 +16,10 @@ class ChangeProfileFilter extends InputFilter {
             'name' => 'firstName',
             'required' => true,
             'filter' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
-                ['name' => \Zend\I18n\Validator\Alpha::class]
+                ['name' => \Laminas\I18n\Validator\Alpha::class]
             ]
         ]);
         
@@ -27,10 +27,10 @@ class ChangeProfileFilter extends InputFilter {
             'name' => 'lastName',
             'required' => true,
             'filter' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
-                ['name' => \Zend\I18n\Validator\Alpha::class]
+                ['name' => \Laminas\I18n\Validator\Alpha::class]
             ]
         ]);
         
@@ -38,10 +38,10 @@ class ChangeProfileFilter extends InputFilter {
             'name' => 'address',
             'required' => FALSE,
             'filter' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
-                ['name' => \Zend\I18n\Validator\Alnum::class]
+                ['name' => \Laminas\I18n\Validator\Alnum::class]
             ]
         ]);
         
@@ -49,10 +49,10 @@ class ChangeProfileFilter extends InputFilter {
             'name' => 'phone',
             'required' => FALSE,
             'filter' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
-                ['name' => \Zend\I18n\Validator\PhoneNumber::class]
+                ['name' => \Laminas\I18n\Validator\PhoneNumber::class]
             ]
         ]);
     }

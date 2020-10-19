@@ -2,7 +2,7 @@
 
 namespace BplUser\Form\Filter;
 
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 use BplUser\Provider\RegistrationOptionsInterface;
 
 class RegisterFilter extends InputFilter {
@@ -12,10 +12,10 @@ class RegisterFilter extends InputFilter {
             'name' => 'email',
             'required' => true,
             'filter' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
             'validators' => [
-                ['name' => \Zend\Validator\EmailAddress::class]
+                ['name' => \Laminas\Validator\EmailAddress::class]
             ]
         ]);
 
@@ -30,7 +30,7 @@ class RegisterFilter extends InputFilter {
                 'required' => true,
                 'validators' => [
                     [
-                        'name' => \Zend\Validator\Identical::class,
+                        'name' => \Laminas\Validator\Identical::class,
                         'options' => [
                             'token' => 'password'
                         ]

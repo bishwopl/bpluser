@@ -1,6 +1,6 @@
 <?php
 namespace BplUser\Form\Filter;
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
  
 class LoginFilter extends InputFilter {
  
@@ -10,7 +10,7 @@ class LoginFilter extends InputFilter {
             'name' => 'identity',
             'required' => true,
             'filters' => [
-                ['name' => \Zend\Filter\StringTrim::class]
+                ['name' => \Laminas\Filter\StringTrim::class]
             ],
         ]);
         
@@ -24,7 +24,7 @@ class LoginFilter extends InputFilter {
             'required' => true,
             'validators' => [
                 [
-                    'name' => \Zend\Validator\Csrf::class
+                    'name' => \Laminas\Validator\Csrf::class
                 ]
             ]
         ]);

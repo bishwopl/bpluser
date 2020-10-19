@@ -2,7 +2,7 @@
 
 namespace BplUser\Service\Factory;
 
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use CirclicalUser\Service\AuthenticationService;
 use BplUser\Service\BplUserService;
@@ -25,7 +25,7 @@ class BplUserServiceFactory implements FactoryInterface {
         $userMapper = $container->get($userMapperKey);
         $roleMapper = $container->get($roleMapperKey);
         $passwordResetMapper = $container->get($passwordResetMapperKey);
-        $viewRenderer = $container->get(\Zend\View\Renderer\RendererInterface::class);
+        $viewRenderer = $container->get(\Laminas\View\Renderer\RendererInterface::class);
         return new BplUserService($moduleOptions, $userMapper, $roleMapper, $passwordResetMapper, $viewRenderer);
     }
 

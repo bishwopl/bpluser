@@ -2,7 +2,7 @@
 
 namespace BplUser\Options;
 
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 use BplUser\Provider\AuthenticationControllerOptionsInterface;
 use BplUser\Provider\UserServiceOptionsInterface;
 

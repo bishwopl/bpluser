@@ -8,7 +8,7 @@
 
 namespace BplUser\Form\Filter;
 
-use Zend\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilter;
 
 class ChangePasswordFilter extends InputFilter {
 
@@ -29,7 +29,7 @@ class ChangePasswordFilter extends InputFilter {
             'required' => true,
             'validators' => [
                 [
-                    'name' => \Zend\Validator\Identical::class,
+                    'name' => \Laminas\Validator\Identical::class,
                     'options' => [
                         'token' => 'new_password'
                     ]
@@ -42,7 +42,7 @@ class ChangePasswordFilter extends InputFilter {
             'required' => true,
             'validators' => [
                 [
-                    'name' => \Zend\Validator\Csrf::class
+                    'name' => \Laminas\Validator\Csrf::class
                 ]
             ]
         ]);
