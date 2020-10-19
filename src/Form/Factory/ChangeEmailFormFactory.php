@@ -7,7 +7,7 @@
 namespace BplUser\Form\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use BplUser\Form\ChangeEmail;
 use BplUser\Form\Filter\ChangeEmailFilter;
 

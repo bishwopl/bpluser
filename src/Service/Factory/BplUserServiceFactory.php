@@ -3,7 +3,7 @@
 namespace BplUser\Service\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use CirclicalUser\Service\AuthenticationService;
 use BplUser\Service\BplUserService;
 

@@ -6,7 +6,7 @@
  */
 namespace BplUser\Controller\Factory;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use BplUser\Controller\Plugin\BplUserControllerPlugin;
 use CirclicalUser\Service\AuthenticationService;

@@ -7,7 +7,7 @@
 namespace BplUser\Controller\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use BplUser\Controller\ChangeEmailController;
 
 class ChangeEmailControllerFactory implements FactoryInterface{

@@ -3,8 +3,8 @@
 namespace BplUser\Form\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use Psr\Container\ContainerInterface;
+use Doctrine\Laminas\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class RegisterFormFactory implements FactoryInterface {
 

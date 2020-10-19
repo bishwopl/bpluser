@@ -7,7 +7,7 @@
 namespace BplUser\Mapper\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use BplUser\Mapper\UserPasswordResetMapper;
 class UserPasswordResetMapperFactory implements FactoryInterface {
 

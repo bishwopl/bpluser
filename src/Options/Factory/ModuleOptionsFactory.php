@@ -3,7 +3,7 @@
 namespace BplUser\Options\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class ModuleOptionsFactory implements FactoryInterface {
 
