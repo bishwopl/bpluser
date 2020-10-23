@@ -8,7 +8,7 @@ namespace BplUser\Form\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Psr\Container\ContainerInterface;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use Doctrine\Laminas\Hydrator\DoctrineObject as DoctrineHydrator;
 use BplUser\Form\ChangeProfile;
 use BplUser\Form\Filter\ChangeProfileFilter;
 
