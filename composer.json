@@ -1,12 +1,13 @@
 {
     "name": "bishwopl/bpluser",
-    "description": "An user registration and authentication module for ZF3 based on saeven/zf3-circlical-user",
+    "description": "An user registration and authentication module for laminas-mvc based on bishwopl/zf3-circlical-user",
     "type": "library",
     "license": "MPL-2.0",
     "homepage": "https://github.com/bishwopl/bpl-user",
     "keywords": [
         "user",
-        "zf3",
+        "laminas",
+        "laminas-mvc",
         "user management",
         "acl",
         "bjyauthorize",
