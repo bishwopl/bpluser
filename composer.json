@@ -27,7 +27,9 @@
         "phpmailer/phpmailer": "^6",
         "laminas/laminas-text": "^2.7",
         "laminas/laminas-captcha": "^2.9",
-        "laminas/laminas-mvc-form": "^1.0"
+        "laminas/laminas-mvc-form": "^1.0",
+        "laminas/laminas-mvc-i18n": "^1.1",
+        "laminas/laminas-session": "^2.9"
     },
     "autoload": {
         "psr-4": {
