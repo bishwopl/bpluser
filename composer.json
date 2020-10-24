@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^7",
-        "bishwopl/zf3-circlical-user": "^1",
+        "bishwopl/zf3-circlical-user": "^v2",
         "phpmailer/phpmailer": "^6",
         "laminas/laminas-text": "^2.7",
         "laminas/laminas-captcha": "^2.9",
