@@ -209,7 +209,6 @@ return [
             'bpl-user/generic-form' => __DIR__ . '/../view/bpl-user/form/_form.phtml',
             'bpl-user/registration-email-template' => __DIR__ . '/../view/bpl-user/register/register-email.phtml',
             'bpl-user/forgot-password-email-template' => __DIR__ . '/../view/bpl-user/forgot/forgot-password-email.phtml',
-            'zend-developer-tools/toolbar/bpl-user-data' => __DIR__ . '/../view/zend-developer-tools/toolbar/bpl-user-data.phtml',
         ]
     ],
     'laminas-developer-tools' => [
