@@ -1,7 +1,13 @@
 <?php
 $user = $collector->getUserData();
-$role = $user !== NULL ? $user->getRoles() : [];
-$noOfRoles = sizeof($role);
+$roles = $user !== NULL ? $user->getRoles() : [];
+
+$roleNames = [];
+foreach($roles as $role){
+    compileRoles($role, $roleNames);
+}
+$roleNames = array_unique($roleNames);
+$noOfRoles = sizeof($roleNames);
 ?>
 <div class="laminas-toolbar-entry">
     <div class="laminas-toolbar-preview">
@@ -18,11 +24,22 @@ $noOfRoles = sizeof($role);
             ?>
             <span class="laminas-toolbar-info laminas-toolbar-color-green"><?= $user->getEmail() . '(' . $user->getId() . ')' ?></span>
             <hr style="margin-top:3px; margin-bottom: 3px;">
-            <?php foreach ($user->getRoles() as $role) : ?>
-                <span class="laminas-detail-value"><?= $role->getName() ?></span>
+            <?php foreach ($roleNames as $roleName) : ?>
+                <span class="laminas-detail-value"><?= $roleName ?></span>
                 <br/>
             <?php endforeach; ?>
             <?php }
         ?>
     </div>
 </div>
+
+<?php
+    function compileRoles(\CirclicalUser\Provider\RoleInterface $role, &$roleNames) {
+        if(!in_array($role->getName(), $roleNames)){
+            $roleNames[] = $role->getName();
+        }
+        if($role->getParent() instanceof \CirclicalUser\Provider\RoleInterface){
+            compileRoles($role->getParent(), $roleNames);
+        }
+    }
+?>

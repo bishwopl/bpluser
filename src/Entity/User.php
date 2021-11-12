@@ -272,4 +272,13 @@ class User implements \BplUser\Provider\BplUserInterface {
     public function setState($state) {
         $this->state = $state;
     }
+
+    public function removeRole(\CirclicalUser\Provider\RoleInterface $role) {
+        $this->roles->removeElement($role);
+    }
+
+    public function hasRole(\CirclicalUser\Provider\RoleInterface $role) {
+        $this->roles->contains($role);
+    }
+
 }
