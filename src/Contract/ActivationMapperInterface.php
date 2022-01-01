@@ -10,7 +10,7 @@ interface ActivationMapperInterface {
      * 
      * @param int $userId
      * @param string $token
-     * @return \BplUser\Provider\BplUserInterface $userRecord
+     * @return \BplUser\Contract\BplUserInterface $userRecord
      */
     public function getActivationRecordByUserIdToken(int $userId, string $token);
 

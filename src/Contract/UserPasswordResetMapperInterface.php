@@ -5,9 +5,9 @@
  * @author Bishwo Prasad Lamichhane <bishwo.prasad@gmail.com>
  */
 
-namespace BplUser\Provider;
+namespace BplUser\Contract;
 
-use BplUser\Provider\UserPasswordResetInterface;
+use BplUser\Contract\UserPasswordResetInterface;
 
 interface UserPasswordResetMapperInterface {
 
@@ -16,7 +16,7 @@ interface UserPasswordResetMapperInterface {
      * 
      * @param string $requestKey
      * 
-     * @return \BplUser\Provider\UserPasswordResetInterface
+     * @return \BplUser\Contract\UserPasswordResetInterface
      */
     public function findByRequestKey($requestKey);
 
@@ -52,7 +52,7 @@ interface UserPasswordResetMapperInterface {
     
     /**
      * 
-     * @return \BplUser\Provider\UserPasswordResetInterface
+     * @return \BplUser\Contract\UserPasswordResetInterface
      */
     public function getEntity();
     
@@ -60,7 +60,7 @@ interface UserPasswordResetMapperInterface {
      * 
      * @param int $userId
      * @param string $token
-     * @return \BplUser\Provider\UserPasswordResetInterface $resetRecord
+     * @return \BplUser\Contract\UserPasswordResetInterface $resetRecord
      */
     public function getResetRecordByUseIdToken(int $userId, string $token);
     

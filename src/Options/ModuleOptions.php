@@ -3,8 +3,8 @@
 namespace BplUser\Options;
 
 use Laminas\Stdlib\AbstractOptions;
-use BplUser\Provider\AuthenticationControllerOptionsInterface;
-use BplUser\Provider\UserServiceOptionsInterface;
+use BplUser\Contract\AuthenticationControllerOptionsInterface;
+use BplUser\Contract\UserServiceOptionsInterface;
 
 class ModuleOptions extends AbstractOptions implements
 AuthenticationControllerOptionsInterface, UserServiceOptionsInterface {

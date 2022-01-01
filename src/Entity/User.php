@@ -2,72 +2,69 @@
 
 namespace BplUser\Entity;
 
+use CirclicalUser\Entity\UserApiToken;
+use CirclicalUser\Provider\AuthenticationRecordInterface;
+use CirclicalUser\Provider\RoleInterface;
+use CirclicalUser\Provider\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonException;
 
 /**
- * BplUser\Entity\User
+ * User
  *
  * @ORM\Entity
  * @ORM\Table(name="users")
  *
  */
-class User implements \BplUser\Provider\BplUserInterface {
+class User implements \BplUser\Contract\BplUserInterface {
+
     /**
      * @var int
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer", nullable=false, options={"unsigned"=true})
      */
-    protected $id;
+    public const EVENT_REGISTERED = 'user.registered';
 
     /**
-     * @var string
-     * @ORM\Column(name="email", type="string", unique=true,  length=255)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer", nullable=false, options={"unsigned"=true})
+     *
+     * @var int
      */
-    protected $email;
+    private $id;
 
     /**
+     * @ORM\Column(type="string", unique=true, length=255)
+     *
      * @var string
-     * @ORM\Column(name="firstName", nullable=true, type="string", length=64)
      */
-    protected $firstName;
+    private $email;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
-     * @ORM\Column(name="lastName", nullable=true, type="string", length=64)
      */
-    protected $lastName;
+    private $first_name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
-     * @ORM\Column(name="address", nullable=true, type="string", length=128)
      */
-    protected $address;
+    private $last_name;
 
     /**
-     * @var string
-     * @ORM\Column(name="city", nullable=true, type="string", length=64)
+     * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"});
+     *
+     * @var \DateTimeImmutable
      */
-    protected $city;
-
-    /**
-     * @var string
-     * @ORM\Column(name="country", nullable=true, type="string", length=2)
-     */
-    protected $country;
-
-    /**
-     * @var string
-     * @ORM\Column(name="zip", nullable=true, type="string", length=10)
-     */
-    protected $zip;
-
-    /**
-     * @var string
-     * @ORM\Column(name="phone", nullable=true, type="string", length=32)
-     */
-    protected $phone;
-
+    private $time_registered;
+    
     /**
      * @var string
      * @ORM\Column(name="state", nullable=true, type="string", length=32)
@@ -75,210 +72,171 @@ class User implements \BplUser\Provider\BplUserInterface {
     protected $state;
 
     /**
-     * @ORM\Column(name="timeRegistered", type="datetime")
-     */
-    protected $timeRegistered;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     * @ORM\ManyToMany(targetEntity="CirclicalUser\Entity\Role")
-     * @ORM\JoinTable(name="users_roles",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="CirclicalUser\Entity\Role", cascade={"persist"})
+     * @ORM\JoinTable(
+     *     name="users_roles",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
      * )
+     *
+     * @var Array<RoleInterface>
      */
-    protected $roles;
+    private $roles;
 
     /**
-     * Initialies the roles variable.
+     * @ORM\OneToOne(targetEntity="CirclicalUser\Entity\Authentication", cascade={"persist"}, mappedBy="user")
      */
-    public function __construct() {
-        if ($this->timeRegistered == NULL) {
-            $this->timeRegistered = new \DateTime();
-        }
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    private $authenticationRecord;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CirclicalUser\Entity\UserApiToken", mappedBy="user", cascade={"all"});
+     *
+     * @var Collection | Array<UserApiToken>
+     */
+    private $api_tokens;
+
+    public function __construct()
+    {
+        $this->time_registered = new \DateTimeImmutable();
+        $this->roles = new ArrayCollection();
+        $this->api_tokens = new ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
-    public function getId() {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail() {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     */
-    public function setEmail($email) {
+    public function setEmail(string $email): void {
         $this->email = $email;
     }
 
-    /**
-     * @return string
-     */
-    public function getFirstName() {
-        return $this->firstName;
+    public function setFirst_name(string $first_name): void {
+        $this->first_name = $first_name;
     }
 
-    /**
-     * @param string $firstName
-     */
-    public function setFirstName($firstName) {
-        $this->firstName = $firstName;
+    public function setLast_name(string $last_name): void {
+        $this->last_name = $last_name;
     }
 
-    /**
-     * @return string
-     */
-    public function getLastName() {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     */
-    public function setLastName($lastName) {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * Get role.
-     *
-     * @return array
-     */
-    public function getRoles() {
-        return $this->roles->getValues();
-    }
-
-    /**
-     * Add a role to the user.
-     *
-     * @param \CirclicalUser\Provider\RoleInterface $role
-     *
-     * @return void
-     */
-    public function addRole(\CirclicalUser\Provider\RoleInterface $role) {
-        $this->roles[] = $role;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTimeRegistered() {
-        return $this->timeRegistered;
-    }
-
-    /**
-     * @param mixed $timeRegistered
-     */
-    public function setTimeRegistered($timeRegistered) {
-        $this->timeRegistered = $timeRegistered;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress() {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     */
-    public function setAddress($address) {
-        $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity() {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     */
-    public function setCity($city) {
-        $this->city = $city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry() {
-        return $this->country;
-    }
-
-    /**
-     * @param string $country
-     */
-    public function setCountry($country) {
-        $this->country = $country;
-    }
-
-    /**
-     * @return string
-     */
-    public function getZip() {
-        return $this->zip;
-    }
-
-    /**
-     * @param string $zip
-     */
-    public function setZip($zip) {
-        $this->zip = $zip;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone() {
-        return $this->phone;
-    }
-
-    /**
-     * @param string $phone
-     */
-    public function setPhone($phone) {
-        $this->phone = $phone;
-    }
-
-    /**
-     * @return string
-     */
-    public function getState() {
-        return $this->state;
-    }
-
-    /**
-     * @param string $state
-     */
-    public function setState($state) {
+    public function setState(string $state): void {
         $this->state = $state;
     }
 
-    public function removeRole(\CirclicalUser\Provider\RoleInterface $role) {
-        $this->roles->removeElement($role);
+    public function setRoles($roles): void {
+        $this->roles = $roles;
     }
 
-    public function hasRole(\CirclicalUser\Provider\RoleInterface $role) {
-        $this->roles->contains($role);
+    public function setApi_tokens(Collection $api_tokens): void {
+        $this->api_tokens = $api_tokens;
+    }
+
+        
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles->getValues();
+    }
+
+    public function addRole(RoleInterface $role): void
+    {
+        if (!$this->roles->contains($role)) {
+            $this->roles->add($role);
+        }
+    }
+
+    public function removeRole(RoleInterface $role): void
+    {
+        if ($this->roles->contains($role)) {
+            $this->roles->remove($role);
+        }
+    }
+
+    public function getTimeRegistered(): \DateTimeImmutable
+    {
+        return $this->time_registered;
+    }
+
+    public function getPreferredTimezone(): \DateTimeZone
+    {
+        return new \DateTimeZone('America/New_York');
+    }
+
+    public function hasRoleWithName(string $roleName): bool
+    {
+        foreach ($this->roles as $role) {
+            if ($role->getName() === $roleName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasRole(RoleInterface $searchRole): bool
+    {
+        return $this->roles->contains($searchRole);
+    }
+
+    public function setAuthenticationRecord(?AuthenticationRecordInterface $authentication): void
+    {
+        $this->authenticationRecord = $authentication;
+    }
+
+    public function getAuthenticationRecord(): ?AuthenticationRecordInterface
+    {
+        return $this->authenticationRecord;
+    }
+
+    public function getApiTokens(): ?Collection
+    {
+        return $this->api_tokens;
+    }
+
+    public function addApiToken(UserApiToken $token): void
+    {
+        $this->api_tokens->add($token);
+    }
+
+    public function getApiTokenArray(): array
+    {
+        return $this->api_tokens->map(static function (UserApiToken $token) {
+            return $token->getToken();
+        })->getValues();
+    }
+
+    /**
+     * @throws JsonException
+     */
+    public function getApiTokensAsJson(): string
+    {
+        return json_encode($this->getApiTokenArray(), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+    }
+
+    public function findApiTokenWithId(string $uuid): ?UserApiToken
+    {
+        foreach ($this->api_tokens as $token) {
+            if ($token->getToken() === $uuid) {
+                return $token;
+            }
+        }
+
+        return null;
+    }
+
+    public function removeApiToken(UserApiToken $token): void
+    {
+        if ($this->api_tokens->contains($token)) {
+            $this->api_tokens->removeElement($token);
+        }
+    }
+
+    public function getState() {
+        return $this->state;
     }
 
 }

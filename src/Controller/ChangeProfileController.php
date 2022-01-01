@@ -10,14 +10,14 @@ namespace BplUser\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Laminas\Form\Form;
-use BplUser\Provider\BplUserInterface;
-use BplUser\Provider\ProfileOptionsInterface;
+use BplUser\Contract\BplUserInterface;
+use BplUser\Contract\ProfileOptionsInterface;
 
 class ChangeProfileController extends AbstractActionController {
 
     /**
      *
-     * @var \BplUser\Provider\ProfileControllerOptionsInterface 
+     * @var \BplUser\Contract\ProfileControllerOptionsInterface 
      */
     protected $options;
 
@@ -29,7 +29,7 @@ class ChangeProfileController extends AbstractActionController {
 
     /**
      *
-     * @var \BplUser\Provider\BplUserInterface 
+     * @var \BplUser\Contract\BplUserInterface 
      */
     protected $userEntity;
 

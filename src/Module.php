@@ -2,11 +2,12 @@
 
 namespace BplUser;
 
-use Laminas\Console\Console;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Session\Container;
 
 class Module {
+    
+    protected static ?bool $isConsole = null;
 
     public function getConfig() {
         return include __DIR__ . '/../config/module.config.php';
@@ -36,7 +37,7 @@ class Module {
     }
 
     public function onBootstrap(MvcEvent $mvcEvent) {
-        if (Console::isConsole()) {
+        if (self::isConsole()) {
             return;
         }
         $application = $mvcEvent->getApplication();
@@ -59,12 +60,24 @@ class Module {
                 $session->offsetUnset('lastActivityTimestamp');
                 $authorizationService->clearIdentity();
                 $mvcEvent->stopPropagation(TRUE);
+                $vm = new \Laminas\View\Model\ViewModel();
+                $vm->setTemplate('error/404');
+                $mvcEvent->setViewModel($vm);
             }
         }
 
         if ($user !== NULL) {
             $session->lastActivityTimestamp = $time;
         }
+    }
+    
+    public static function isConsole(): bool
+    {
+        if (null === static::$isConsole) {
+            static::$isConsole = PHP_SAPI === 'cli';
+        }
+
+        return static::$isConsole;
     }
 
 }

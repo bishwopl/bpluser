@@ -14,6 +14,7 @@ class RegisterFormFactory implements FactoryInterface {
         $registerForm = new \BplUser\Form\Register('register-form', $moduleOptions);
         $registerForm->setInputFilter(new \BplUser\Form\Filter\RegisterFilter($moduleOptions));
         $registerForm->setHydrator(new DoctrineHydrator($em));
+        $registerForm->setUseAsBaseFieldset(true);
         return $registerForm;
     }
 

@@ -9,18 +9,18 @@ namespace BplUser\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Laminas\Form\Form;
-use BplUser\Provider\BplUserServiceInterface;
-use BplUser\Provider\ForgotPasswordOptionsInterface;
+use BplUser\Contract\BplUserServiceInterface;
+use BplUser\Contract\ForgotPasswordOptionsInterface;
 
 class ForgotController extends AbstractActionController {
 
     /**
-     * @var \BplUser\Provider\BplUserServiceInterface
+     * @var \BplUser\Contract\BplUserServiceInterface
      */
     protected $bplUserService;
 
     /**
-     * @var \BplUser\Provider\ForgotPasswordOptionsInterface
+     * @var \BplUser\Contract\ForgotPasswordOptionsInterface
      */
     protected $options;
 

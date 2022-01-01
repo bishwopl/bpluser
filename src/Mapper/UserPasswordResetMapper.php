@@ -8,8 +8,8 @@
 namespace BplUser\Mapper;
 
 use Doctrine\ORM\EntityManager;
-use BplUser\Provider\UserPasswordResetMapperInterface;
-use BplUser\Provider\UserPasswordResetInterface;
+use BplUser\Contract\UserPasswordResetMapperInterface;
+use BplUser\Contract\UserPasswordResetInterface;
 
 class UserPasswordResetMapper implements UserPasswordResetMapperInterface {
 
@@ -39,7 +39,7 @@ class UserPasswordResetMapper implements UserPasswordResetMapperInterface {
 
     /**
      * 
-     * @return \BplUser\Provider\UserPasswordResetInterface
+     * @return \BplUser\Contract\UserPasswordResetInterface
      */
     public function getEntity() {
         return new $this->entityName;

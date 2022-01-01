@@ -3,7 +3,7 @@ namespace BplUser\Form;
 
 use Laminas\Form\Form;
 use Laminas\Form\Element;
-use BplUser\Provider\ForgotPasswordOptionsInterface;
+use BplUser\Contract\ForgotPasswordOptionsInterface;
 class Forgot extends Form{
     /**
      * @var AuthenticationOptionsInterface

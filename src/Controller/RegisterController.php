@@ -9,19 +9,19 @@ namespace BplUser\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Laminas\Form\Form;
-use BplUser\Provider\BplUserInterface;
-use BplUser\Provider\BplUserServiceInterface;
-use BplUser\Provider\RegistrationOptionsInterface;
+use BplUser\Contract\BplUserInterface;
+use BplUser\Contract\BplUserServiceInterface;
+use BplUser\Contract\RegistrationOptionsInterface;
 
 class RegisterController extends AbstractActionController {
 
     /**
-     * @var \BplUser\Provider\BplUserServiceInterface
+     * @var \BplUser\Contract\BplUserServiceInterface
      */
     protected $bplUserService;
 
     /**
-     * @var \BplUser\Provider\RegistrationOptionsInterface
+     * @var \BplUser\Contract\RegistrationOptionsInterface
      */
     protected $options;
 
@@ -31,7 +31,7 @@ class RegisterController extends AbstractActionController {
     protected $registrationForm;
 
     /**
-     * @var \BplUser\Provider\BplUserInterface
+     * @var \BplUser\Contract\BplUserInterface
      */
     protected $userEntity;
 
@@ -56,11 +56,14 @@ class RegisterController extends AbstractActionController {
 
         $user = false;
         $post = $this->getRequest()->getPost()->toArray();
-        $this->registrationForm->bind($this->userEntity);
         $this->registrationForm->setData($post);
+        $this->registrationForm->bind($this->userEntity);
         
         if ($this->getRequest()->isPost() && $this->registrationForm->isValid()) {
             try {
+                $this->userEntity = $this->registrationForm->getObject();
+                \Symfony\Component\VarDumper\VarDumper::dump($this->registrationForm);
+                \Symfony\Component\VarDumper\VarDumper::dump($this->userEntity);
                 $user = $this->bplUserService->register($this->userEntity);
             } catch (\Exception $ex) {
                 $this->registrationForm->get('email')->setMessages([$ex->getMessage()]);

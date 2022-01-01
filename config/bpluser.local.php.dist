@@ -43,7 +43,7 @@ $emailOptions = [
         'smtp_password' => '',
     ],
     /**
-     * Must implement \BplUser\Provider\MailServiceProviderInterface:
+     * Must implement \BplUser\Contract\MailServiceProviderInterface:
      * This option along with extra_mail_options can be used to make your own
      * mail service to notify user after registration and password reset request
      * 

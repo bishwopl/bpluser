@@ -9,19 +9,19 @@ namespace BplUser\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Laminas\Form\Form;
-use BplUser\Provider\AuthenticationControllerOptionsInterface;
-use BplUser\Provider\BplUserServiceInterface;
+use BplUser\Contract\AuthenticationControllerOptionsInterface;
+use BplUser\Contract\BplUserServiceInterface;
 use Laminas\Session\Container;
 
 class AuthenticationController extends AbstractActionController {
 
     /**
-     * @var \BplUser\Provider\BplUserServiceInterface
+     * @var \BplUser\Contract\BplUserServiceInterface
      */
     protected $bplUserService;
 
     /**
-     * @var \BplUser\Provider\AuthenticationControllerOptionsInterface
+     * @var \BplUser\Contract\AuthenticationControllerOptionsInterface
      */
     protected $options;
 
@@ -106,6 +106,7 @@ class AuthenticationController extends AbstractActionController {
         $user = $this->auth()->getIdentity();
         $redirectUrl = $this->getLogInUrl();
         if ($user !== NULL) {
+            echo 'login successfull';
             return $this->redirect()->toUrl($redirectUrl);
         }
     }

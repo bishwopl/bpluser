@@ -1,8 +1,8 @@
 <?php
 
-namespace BplUser\Provider;
+namespace BplUser\Contract;
 
-use BplUser\Provider\BplUserInterface;
+use BplUser\Contract\BplUserInterface;
 
 interface BplUserServiceInterface {
 
@@ -34,7 +34,7 @@ interface BplUserServiceInterface {
      * 
      * @param int $userId
      * @param string $token
-     * @return \BplUser\Provider\UserPasswordResetInterface $resetRecord
+     * @return \BplUser\Contract\UserPasswordResetInterface $resetRecord
      */
     public function getResetRecord(int $userId, string $token);
 

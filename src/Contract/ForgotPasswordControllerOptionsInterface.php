@@ -1,6 +1,6 @@
 <?php
 
-namespace BplUser\Provider;
+namespace BplUser\Contract;
 
 interface ForgotPasswordControllerOptionsInterface extends ForgotPasswordOptionsInterface {
     

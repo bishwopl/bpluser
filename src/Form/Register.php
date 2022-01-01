@@ -9,7 +9,7 @@ namespace BplUser\Form;
 
 use Laminas\Form\Form;
 use Laminas\Form\Element;
-use BplUser\Provider\RegistrationOptionsInterface;
+use BplUser\Contract\RegistrationOptionsInterface;
 
 class Register extends Form {
 

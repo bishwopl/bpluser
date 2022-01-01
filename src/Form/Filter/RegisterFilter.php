@@ -3,7 +3,7 @@
 namespace BplUser\Form\Filter;
 
 use Laminas\InputFilter\InputFilter;
-use BplUser\Provider\RegistrationOptionsInterface;
+use BplUser\Contract\RegistrationOptionsInterface;
 
 class RegisterFilter extends InputFilter {
 

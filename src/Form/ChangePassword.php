@@ -9,7 +9,7 @@ namespace BplUser\Form;
 
 use Laminas\Form\Form;
 use Laminas\Form\Element;
-use BplUser\Provider\AuthenticationOptionsInterface;
+use BplUser\Contract\AuthenticationOptionsInterface;
 
 class ChangePassword extends Form {
 

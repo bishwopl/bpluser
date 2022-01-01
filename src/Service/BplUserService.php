@@ -4,18 +4,18 @@ namespace BplUser\Service;
 
 use Laminas\View\Renderer\RendererInterface;
 use Laminas\Math\Rand;
-use BplUser\Provider\BplUserInterface;
+use BplUser\Contract\BplUserInterface;
 use CirclicalUser\Provider\UserProviderInterface;
 use CirclicalUser\Provider\RoleProviderInterface;
-use BplUser\Provider\UserServiceOptionsInterface;
-use BplUser\Provider\BplUserServiceInterface;
-use BplUser\Provider\UserPasswordResetMapperInterface;
-use BplUser\Provider\UserPasswordResetInterface;
+use BplUser\Contract\UserServiceOptionsInterface;
+use BplUser\Contract\BplUserServiceInterface;
+use BplUser\Contract\UserPasswordResetMapperInterface;
+use BplUser\Contract\UserPasswordResetInterface;
 
 class BplUserService implements BplUserServiceInterface {
 
     /**
-     * @var \BplUser\Provider\UserServiceOptionsInterface
+     * @var \BplUser\Contract\UserServiceOptionsInterface
      */
     protected $options;
     
@@ -30,7 +30,7 @@ class BplUserService implements BplUserServiceInterface {
     protected $roleMapper;
 
     /**
-     * @var \BplUser\Provider\UserPasswordResetMapperInterface
+     * @var \BplUser\Contract\UserPasswordResetMapperInterface
      */
     protected $passwordResetMapper;
 
