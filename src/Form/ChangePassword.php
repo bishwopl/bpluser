@@ -30,7 +30,8 @@ class ChangePassword extends Form {
             ],
             'attributes' => [
                 'type' => 'password',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
 
@@ -42,7 +43,8 @@ class ChangePassword extends Form {
             ],
             'attributes' => [
                 'type' => 'password',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
         
@@ -54,7 +56,8 @@ class ChangePassword extends Form {
             ],
             'attributes' => [
                 'type' => 'password',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
 

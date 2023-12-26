@@ -36,10 +36,13 @@ class Module {
         ];
     }
 
+	/*	
     public function onBootstrap(MvcEvent $mvcEvent) {
+    	
         if (self::isConsole()) {
             return;
         }
+        
         $application = $mvcEvent->getApplication();
         $serviceLocator = $application->getServiceManager();
         $authorizationService = $serviceLocator->get(\CirclicalUser\Service\AuthenticationService::class);
@@ -69,8 +72,10 @@ class Module {
         if ($user !== NULL) {
             $session->lastActivityTimestamp = $time;
         }
+        
     }
-    
+    */
+
     public static function isConsole(): bool
     {
         if (null === static::$isConsole) {

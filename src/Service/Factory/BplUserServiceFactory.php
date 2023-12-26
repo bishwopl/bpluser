@@ -25,8 +25,16 @@ class BplUserServiceFactory implements FactoryInterface {
         $userMapper = $container->get($userMapperKey);
         $roleMapper = $container->get($roleMapperKey);
         $passwordResetMapper = $container->get($passwordResetMapperKey);
+        $authenticationService = $container->get(AuthenticationService::class);
         $viewRenderer = $container->get(\Laminas\View\Renderer\RendererInterface::class);
-        return new BplUserService($moduleOptions, $userMapper, $roleMapper, $passwordResetMapper, $viewRenderer);
+        return new BplUserService(
+            $moduleOptions, 
+            $userMapper, 
+            $roleMapper,
+            $passwordResetMapper,
+            $viewRenderer,
+            $authenticationService->getIdentity()
+        );
     }
 
 }

@@ -32,10 +32,8 @@ class UserPasswordReset implements UserPasswordResetInterface
     /**
      * @var \BplUser\Contract\BplUserInterface
      *
-     * @ORM\ManyToOne(targetEntity="\BplUser\Contract\BplUserInterface")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
+     * @ORM\OneToOne(targetEntity="\BplUser\Contract\BplUserInterface", inversedBy="userPasswordReset")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 

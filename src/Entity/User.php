@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JsonException;
+use BplUser\Provider\BplUserInterface;
+use BplUser\Entity\UserPasswordReset;
 
 /**
  * User
@@ -49,21 +51,21 @@ class User implements \BplUser\Contract\BplUserInterface {
      *
      * @var string
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @ORM\Column(type="datetime_immutable", options={"default": "CURRENT_TIMESTAMP"});
      *
      * @var \DateTimeImmutable
      */
-    private $time_registered;
+    private $timeRegistered;
     
     /**
      * @var string
@@ -79,7 +81,7 @@ class User implements \BplUser\Contract\BplUserInterface {
      *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
      * )
      *
-     * @var Array<RoleInterface>
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $roles;
 
@@ -92,26 +94,40 @@ class User implements \BplUser\Contract\BplUserInterface {
      * @ORM\OneToMany(targetEntity="CirclicalUser\Entity\UserApiToken", mappedBy="user", cascade={"all"});
      *
      * @var Collection | Array<UserApiToken>
+     * 
+     */ 
+    private $apiTokens;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
      */
-    private $api_tokens;
+    private $avatar;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="BplUser\Entity\UserPasswordReset", mappedBy="user", orphanRemoval=true)
+     */
+    private ?UserPasswordReset $userPasswordReset;
 
     public function __construct()
     {
-        $this->time_registered = new \DateTimeImmutable();
+        $this->timeRegistered = new \DateTimeImmutable();
         $this->roles = new ArrayCollection();
-        $this->api_tokens = new ArrayCollection();
+        $this->apiTokens = new ArrayCollection();
+        $this->userPasswordReset = null;
     }
 
     public function setEmail(string $email): void {
         $this->email = $email;
     }
 
-    public function setFirst_name(string $first_name): void {
-        $this->first_name = $first_name;
+    public function setFirstName(string $firstName): void {
+        $this->firstName = $firstName;
     }
 
-    public function setLast_name(string $last_name): void {
-        $this->last_name = $last_name;
+    public function setLastName(string $lastName): void {
+        $this->lastName = $lastName;
     }
 
     public function setState(string $state): void {
@@ -122,14 +138,22 @@ class User implements \BplUser\Contract\BplUserInterface {
         $this->roles = $roles;
     }
 
-    public function setApi_tokens(Collection $api_tokens): void {
-        $this->api_tokens = $api_tokens;
+    public function setApi_tokens(Collection $apiTokens): void {
+        $this->apiTokens = $apiTokens;
     }
 
         
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getFirstName(): ?string {
+        return $this->firstName;
+    }
+
+    public function getLastName(): ?string {
+        return $this->lastName;
     }
 
     public function getEmail(): ?string
@@ -141,6 +165,13 @@ class User implements \BplUser\Contract\BplUserInterface {
     {
         return $this->roles->getValues();
     }
+    
+    public function addRoles($roles): void
+    {
+        foreach($roles as $role){
+            $this->addRole($role);
+        }
+    }
 
     public function addRole(RoleInterface $role): void
     {
@@ -149,16 +180,23 @@ class User implements \BplUser\Contract\BplUserInterface {
         }
     }
 
+    public function removeRoles($roles): void
+    {
+        foreach($roles as $role){
+            $this->removeRole($role);
+        }
+    }
+    
     public function removeRole(RoleInterface $role): void
     {
         if ($this->roles->contains($role)) {
-            $this->roles->remove($role);
+            $this->roles->removeElement($role);
         }
     }
 
     public function getTimeRegistered(): \DateTimeImmutable
     {
-        return $this->time_registered;
+        return $this->timeRegistered;
     }
 
     public function getPreferredTimezone(): \DateTimeZone
@@ -194,17 +232,17 @@ class User implements \BplUser\Contract\BplUserInterface {
 
     public function getApiTokens(): ?Collection
     {
-        return $this->api_tokens;
+        return $this->apiTokens;
     }
 
     public function addApiToken(UserApiToken $token): void
     {
-        $this->api_tokens->add($token);
+        $this->apiTokens->add($token);
     }
 
     public function getApiTokenArray(): array
     {
-        return $this->api_tokens->map(static function (UserApiToken $token) {
+        return $this->apiTokens->map(static function (UserApiToken $token) {
             return $token->getToken();
         })->getValues();
     }
@@ -219,7 +257,7 @@ class User implements \BplUser\Contract\BplUserInterface {
 
     public function findApiTokenWithId(string $uuid): ?UserApiToken
     {
-        foreach ($this->api_tokens as $token) {
+        foreach ($this->apiTokens as $token) {
             if ($token->getToken() === $uuid) {
                 return $token;
             }
@@ -230,13 +268,30 @@ class User implements \BplUser\Contract\BplUserInterface {
 
     public function removeApiToken(UserApiToken $token): void
     {
-        if ($this->api_tokens->contains($token)) {
-            $this->api_tokens->removeElement($token);
+        if ($this->apiTokens->contains($token)) {
+            $this->apiTokens->removeElement($token);
         }
     }
 
     public function getState() {
         return $this->state;
+    }
+    
+    public function getAvatar(): ?string {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): void {
+        $this->avatar = $avatar;
+    }
+    
+    public function getUserPasswordReset(): ?UserPasswordReset {
+        return $this->userPasswordReset;
+    }
+
+    public function setUserPasswordReset(?UserPasswordReset $userPasswordReset) {
+        $this->userPasswordReset = $userPasswordReset;
+        return $this;
     }
 
 }

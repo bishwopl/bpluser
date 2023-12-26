@@ -62,8 +62,6 @@ class RegisterController extends AbstractActionController {
         if ($this->getRequest()->isPost() && $this->registrationForm->isValid()) {
             try {
                 $this->userEntity = $this->registrationForm->getObject();
-                \Symfony\Component\VarDumper\VarDumper::dump($this->registrationForm);
-                \Symfony\Component\VarDumper\VarDumper::dump($this->userEntity);
                 $user = $this->bplUserService->register($this->userEntity);
             } catch (\Exception $ex) {
                 $this->registrationForm->get('email')->setMessages([$ex->getMessage()]);
@@ -82,6 +80,7 @@ class RegisterController extends AbstractActionController {
 
                 $this->auth()->create($user, $user->getEmail(), $password);
                 $this->bplUserService->addDefaultRoles($user);
+                $user = $this->auth()->getIdentity();
             } catch (\Exception $ex) {
                 $this->registrationForm->get('email')->setMessages([$ex->getMessage()]);
             }

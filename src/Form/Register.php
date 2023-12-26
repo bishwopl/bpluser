@@ -30,7 +30,8 @@ class Register extends Form {
             ],
             'attributes' => [
                 'type' => 'text',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
 
@@ -43,7 +44,8 @@ class Register extends Form {
                 ],
                 'attributes' => [
                     'type' => 'password',
-                    'required' => 'true'
+                    'required' => 'true',
+                    'class' => 'form-control form-control-user'
                 ],
             ]);
 
@@ -55,7 +57,8 @@ class Register extends Form {
                 ],
                 'attributes' => [
                     'type' => 'password',
-                    'required' => 'true'
+                    'required' => 'true',
+                    'class' => 'form-control form-control-user'
                 ],
             ]);
         }
@@ -68,7 +71,8 @@ class Register extends Form {
                     'captcha' => $this->registerOptions->getFormCaptchaOptions(),
                 ],
                 'attributes' => [
-                    'required' => 'true'
+                    'required' => 'true',
+                    'class' => 'form-control form-control-user'
                 ],
             ]);
         }

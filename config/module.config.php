@@ -6,6 +6,14 @@ use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 
 return [
+    'bpl_user' => [
+        'user-atom-keys' => [
+            //[
+            //    'keyName' => 'address',
+            //    'keyDescrption' => 'Address'
+            //],
+        ],
+    ],
     'controllers' => [
         'factories' => [
             Controller\AuthenticationController::class => Controller\Factory\AuthenticationControllerFactory::class,
@@ -14,6 +22,7 @@ return [
             Controller\ChangeEmailController::class => Controller\Factory\ChangeEmailControllerFactory::class,
             Controller\ChangePasswordController::class => Controller\Factory\ChangePasswordControllerFactory::class,
             Controller\ChangeProfileController::class => Controller\Factory\ChangeProfileControllerFactory::class,
+            Controller\UserAtomController::class => Controller\Factory\UserAtomControllerFactory::class
         ],
         
     ],
@@ -147,6 +156,16 @@ return [
                             ],
                         ],
                     ],
+                    'user-atoms' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/user-atoms',
+                            'defaults' => [
+                                'controller' => Controller\UserAtomController::class,
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
                     'logout' => [
                         'type' => Literal::class,
                         'options' => [
@@ -194,6 +213,9 @@ return [
                         Controller\RegisterController::class => [
                             'default' => [],
                         ],
+                        Controller\UserAtomController::class => [
+                            'default' => ['user'],
+                        ],
                     ],
                 ],
             ],
@@ -209,6 +231,7 @@ return [
             'bpl-user/generic-form' => __DIR__ . '/../view/bpl-user/form/_form.phtml',
             'bpl-user/registration-email-template' => __DIR__ . '/../view/bpl-user/register/register-email.phtml',
             'bpl-user/forgot-password-email-template' => __DIR__ . '/../view/bpl-user/forgot/forgot-password-email.phtml',
+            'bpl-user/login-page' => __DIR__ . '/../view/bpl-user/authentication/login.phtml',
         ]
     ],
     'laminas-developer-tools' => [

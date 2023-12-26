@@ -11,6 +11,7 @@ use Psr\Container\ContainerInterface;
 use Doctrine\Laminas\Hydrator\DoctrineObject as DoctrineHydrator;
 use BplUser\Form\ChangeProfile;
 use BplUser\Form\Filter\ChangeProfileFilter;
+use Laminas\Form\FormElementManager;
 
 class ChangeProfileFormFactory implements FactoryInterface{
     /**
@@ -21,9 +22,11 @@ class ChangeProfileFormFactory implements FactoryInterface{
      * @return \BplUser\Form\ChangeProfile
      */
     public function __invoke(ContainerInterface $container, $requestedName, Array $options = null) {
-        $moduleOptions = $container->get(\BplUser\Options\ModuleOptions::class);
         $em = $container->get('doctrine.entitymanager.orm_default');
-        $changeProfileForm = new ChangeProfile('change-profile-form', $moduleOptions);
+        
+        $formManager = $container->get(FormElementManager::class);
+        $changeProfileForm = $formManager->get(ChangeProfile::class);
+        $changeProfileForm->setName('change-profile-form');
         $changeProfileForm->setInputFilter(new ChangeProfileFilter());
         $changeProfileForm->setHydrator(new DoctrineHydrator($em));
         return $changeProfileForm;

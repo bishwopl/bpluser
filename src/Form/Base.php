@@ -74,7 +74,7 @@ class Base extends Form {
 
         $this->add([
             'name' => 'id',
-            'type' => 'Laminas\Form\Element\Hidden',
+            'type' => \Laminas\Form\Element\Hidden::class,
             'attributes' => [
                 'type' => 'hidden'
             ],

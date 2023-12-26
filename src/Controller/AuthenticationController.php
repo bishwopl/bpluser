@@ -62,26 +62,36 @@ class AuthenticationController extends AbstractActionController {
         $this->loginForm->setData($post);
 
         if ($this->request->isPost() && $this->loginForm->isValid()) {
+        
             $identity = trim($post['identity']);
             $credential = $post['credential'];
 
             try {
                 $user = $this->auth()->authenticate($identity, $credential);
-                if ($user !== NULL && $this->options->getEnableUserState() && !in_array($user->getState(), $this->options->getAllowedLoginStates())
+                if (
+                        $user instanceof \CirclicalUser\Provider\UserInterface 
+                        && $this->options->getEnableUserState() 
+                        && !in_array($user->getState(), $this->options->getAllowedLoginStates())
                 ) {
-                    return $this->forward()->dispatch(AuthenticationController::class, ['action' => 'logout']);
+                    $this->auth()->clearIdentity();
+                    throw new \Exception("Your account is in disabled state !");
+                    //return $this->forward()->dispatch(AuthenticationController::class, ['action' => 'logout']);
                 }
+            
                 $session = new Container($user->getId() . '_lastActivityTimestamp');
                 $session->lastActivityTimestamp = time();
-            } catch (\Exception $ex) {
-                
+            } catch (\CirclicalUser\Exception\NoSuchUserException $ex) {
+                $this->loginForm->get('identity')->setMessages(['Username doesnot exist !']);
+            } catch(\CirclicalUser\Exception\BadPasswordException $ex) {
+                $this->loginForm->get('credential')->setMessages(['Incorrect Password !']);
+            } catch(\Exception $ex) {
+                $this->loginForm->get('identity')->setMessages([$ex->getMessage()]);
             }
-
+            
             $this->retrunIfLoggedIn();
         }
 
         $this->embedRedirect();
-
         $vm->setVariables([
             'loginForm' => $this->loginForm,
             'enableRegistration' => $this->options->getEnableRegistration()
@@ -106,7 +116,6 @@ class AuthenticationController extends AbstractActionController {
         $user = $this->auth()->getIdentity();
         $redirectUrl = $this->getLogInUrl();
         if ($user !== NULL) {
-            echo 'login successfull';
             return $this->redirect()->toUrl($redirectUrl);
         }
     }

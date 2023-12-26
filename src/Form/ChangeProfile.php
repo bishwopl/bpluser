@@ -9,6 +9,7 @@ namespace BplUser\Form;
 
 use Laminas\Form\Form;
 use Laminas\Form\Element;
+use Ramsey\Uuid\Uuid;
 
 class ChangeProfile extends Form {
 
@@ -22,7 +23,8 @@ class ChangeProfile extends Form {
             ],
             'attributes' => [
                 'type' => 'text',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
 
@@ -33,30 +35,66 @@ class ChangeProfile extends Form {
             ],
             'attributes' => [
                 'type' => 'text',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
-
+        
         $this->add([
-            'name' => 'address',
-            'options' => [
-                'label' => 'Address',
-            ],
+            'type' => \LaminasFileUpload\Form\Element\FileUpload::class,
+            'name' => 'avatar',
             'attributes' => [
-                'type' => 'text',
+                'formUniqueId'      => 'photo_'.Uuid::uuid4(),
+                'id'                => 'photoPathId',
+                'storage'           => 'filesystem', // 'filesystem' or 'db' or 'hybrid'
+                'showProgress'      => true,
+                'multiple'          => false,
+                'enableRemove'      => false,
+                'uploadDir'         => 'data/UserData/',
+                'icon'              => 'fas fa-edit',
+                'successIcon'       => 'fas fa-edit',
+                'errorIcon'         => 'fas fa-remove',
+                'class'             => 'btn btn-info',
+                'uploadText'        => 'Change Profile Picture',
+                'successText'       => 'Change Profile Picture',
+                'errorText'         => 'Try Again',
+                'uploadingText'     => 'Uploading ...',
+                'replacePrevious'   => true,
+                'randomizeName'     => true,
+                'showPreview'       => true,
+                'validator' => [ 
+                    'allowedExtensions' => 'jpg,png',
+                    'allowedMime'       => 'image/jpeg,image/png',
+                    'minSize'           => 10,
+                    'maxSize'           => 1*1024*1024,
+                    'image' => [
+                        'minWidth'  => 0,
+                        'minHeight' => 0,
+                        'maxWidth'  => 12000,
+                        'maxHeight' => 10000,
+                    ],
+                ],
+                'crop' => [
+                    'width'  => 100,
+                    'height' => 100,
+                ],
+                'preview'=>[
+                    'width'  => 100,
+                    'height' => 100,
+                ],
+                'callback'=>[
+                    [
+                        'object'    => \BplUser\Service\BplUserService::class,
+                        'function'  => 'changeProfilePicturePath',
+                        'parameter' => []
+                    ]
+                ]
+            ],
+            'options' => [
+                'label' => 'Profile Picture',
             ],
         ]);
-
-        $this->add([
-            'name' => 'phone',
-            'options' => [
-                'label' => 'Contact No',
-            ],
-            'attributes' => [
-                'type' => 'text',
-            ],
-        ]);
-
+        
         $submitElement = new Element\Button('submit');
         $submitElement
                 ->setLabel('Submit')

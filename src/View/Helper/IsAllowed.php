@@ -16,8 +16,8 @@ class IsAllowed extends AbstractHelper
 
     /**
      * 
-     * @param type $controllerName
-     * @param type $actions
+     * @param string $controllerName
+     * @param string|array $actions
      * @return boolean
      */
     public function __invoke($controllerName, $actions)
@@ -31,7 +31,7 @@ class IsAllowed extends AbstractHelper
                 $allowed = $allowed && $this->accessService->canAccessAction($controllerName, $ac);
             }
             return $allowed;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             return false;
         }
     }

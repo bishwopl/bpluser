@@ -61,5 +61,5 @@ class ChangeProfileController extends AbstractActionController {
         $vm->setVariable('profileChanged', $profileChanged);
         return $vm;
     }
-
+    
 }

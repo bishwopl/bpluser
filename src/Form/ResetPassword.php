@@ -1,10 +1,5 @@
 <?php
 
-/**
- * 
- * @author Bishwo Prasad Lamichhane <bishwo.prasad@gmail.com>
- */
-
 namespace BplUser\Form;
 
 use Laminas\Form\Form;
@@ -23,7 +18,8 @@ class ResetPassword extends Form {
             ],
             'attributes' => [
                 'type' => 'password',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
 
@@ -35,7 +31,8 @@ class ResetPassword extends Form {
             ],
             'attributes' => [
                 'type' => 'password',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
 

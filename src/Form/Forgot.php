@@ -21,7 +21,8 @@ class Forgot extends Form{
             ],
             'attributes' => [
                 'type' => 'text',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
         
@@ -30,7 +31,7 @@ class Forgot extends Form{
             ->setLabel('Request new password')
             ->setAttributes([
                 'type'  => 'submit',
-                'class' => 'btn btn-success'
+                'class' => 'btn btn-primary'
             ]);
         $this->add($submitElement);
     }

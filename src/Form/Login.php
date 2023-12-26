@@ -23,8 +23,10 @@ class Login extends Form {
                 'label' => 'Username',
             ],
             'attributes' => [
+                'placeholder' => "Username",
                 'type' => 'text',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
         
@@ -35,8 +37,10 @@ class Login extends Form {
                 'label' => 'Password',
             ],
             'attributes' => [
+                'placeholder' => "Password",
                 'type' => 'password',
-                'required' => 'true'
+                'required' => 'true',
+                'class' => 'form-control form-control-user'
             ],
         ]);
         
@@ -60,7 +64,7 @@ class Login extends Form {
             ->setLabel('Sign In')
             ->setAttributes([
                 'type'  => 'submit',
-                'class' => 'btn btn-success'
+                'class' => 'btn btn-primary btn-user btn-block'
             ]);
         $this->add($submitElement);
     }

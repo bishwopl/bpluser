@@ -45,18 +45,22 @@ class BplUserService implements BplUserServiceInterface {
      * @var \Laminas\View\Renderer\RendererInterface 
      */
     protected $viewRenderer;
+    
+    protected $loggedInUser = null;
 
     public function __construct(
     UserServiceOptionsInterface $options, 
     UserProviderInterface $userMapper, 
     RoleProviderInterface $roleMapper, 
     UserPasswordResetMapperInterface $passwordResetMapper, 
-    RendererInterface $viewRenderer) {
+    RendererInterface $viewRenderer,
+    ?BplUserInterface $loggedInUser) {
         $this->options = $options;
         $this->userMapper = $userMapper;
         $this->roleMapper = $roleMapper;
         $this->viewRenderer = $viewRenderer;
         $this->passwordResetMapper = $passwordResetMapper;
+        $this->loggedInUser = $loggedInUser;
         $this->mailer = NULL;
     }
 
@@ -68,7 +72,7 @@ class BplUserService implements BplUserServiceInterface {
             throw new \Exception('Email Address already in use!');
         }
         $user->setState($this->options->getDefaultUserState());
-        $this->userMapper->update($user);
+        $this->userMapper->save($user);
         return $this->userMapper->findByEmail($user->getEmail());
     }
 
@@ -241,6 +245,18 @@ class BplUserService implements BplUserServiceInterface {
                         . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                         . '0123456789', true);
         return $requestKey;
+    }
+    
+    public function changeProfilePicturePath($uploadedFileNames, $parameter = []){
+        /* @var $file \LaminasFileUpload\Entity\File */
+        if(!is_array($uploadedFileNames)){
+            return;
+        }
+        $file = array_values($uploadedFileNames)[0];
+        
+        $this->loggedInUser->setAvatar($file->getName());
+        $this->userMapper->update($this->loggedInUser);
+        return;
     }
 
 }
