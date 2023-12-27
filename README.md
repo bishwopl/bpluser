@@ -8,7 +8,7 @@ An user registration, authentication and authorization module for Laminas-MVC ba
 * Laminas Developers Toolbar extention
 
 # Requirements
-Check [composer.json] (https://github.com/bishwopl/bpluser/blob/master/composer.json) file for requirements.
+Check [composer.json](https://github.com/bishwopl/bpluser/blob/master/composer.json) file for requirements.
     
 # Installation
 * Run following from project root directory 
