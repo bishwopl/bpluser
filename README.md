@@ -8,12 +8,7 @@ An user registration, authentication and authorization module for Laminas-MVC ba
 * Laminas Developers Toolbar extention
 
 # Requirements
-* [php: ^7.0.0](https://secure.php.net/)
-* [phpmailer/phpmailer: ^6](https://github.com/PHPMailer/PHPMailer)
-* [bishwopl/zf3-circlical-user: ^1](https://github.com/bishwopl/zf3-circlical-user/)
-* [laminas/laminas-text: ^2.7](https://github.com/laminas/laminas-text/)
-* [laminas/laminas-captcha: ^2.9](https://github.com/laminas/laminas-text/)
-* [laminas/laminas-mvc-form: ^1.0](https://github.com/laminas/laminas-mvc-form/)
+Check [composer.json] (https://github.com/bishwopl/bpluser/blob/master/composer.json) file for requirements.
     
 # Installation
 * Run following from project root directory 
