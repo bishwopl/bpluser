@@ -1,5 +1,5 @@
 # bpluser
-An user registration, authentication and authorization module for Laminas-MVC based on [bishwopl/zf3-circlical-user](https://github.com/bishwopl/zf3-circlical-user/)
+An user registration, authentication and authorization module for Laminas-MVC based on [saeven/zf3-circlical-user](https://github.com/saeven/zf3-circlical-user/)
 
 # Features
 * User Registration
