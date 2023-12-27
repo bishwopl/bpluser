@@ -40,6 +40,7 @@ class ChangeProfile extends Form {
             ],
         ]);
         
+        /*
         $this->add([
             'type' => \LaminasFileUpload\Form\Element\FileUpload::class,
             'name' => 'avatar',
@@ -94,6 +95,8 @@ class ChangeProfile extends Form {
                 'label' => 'Profile Picture',
             ],
         ]);
+         * 
+         */
         
         $submitElement = new Element\Button('submit');
         $submitElement

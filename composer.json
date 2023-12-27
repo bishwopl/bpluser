@@ -22,14 +22,14 @@
         }
     ],
     "require": {
-        "php": "^7",
-        "bishwopl/zf3-circlical-user": "^v2",
+        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "saeven/zf3-circlical-user": "0.3.2",
         "phpmailer/phpmailer": "^6",
-        "laminas/laminas-text": "^2.7",
-        "laminas/laminas-captcha": "^2.9",
-        "laminas/laminas-form": "^2.15",
-        "laminas/laminas-mvc-i18n": "^1.1",
-        "laminas/laminas-session": "^2.9"
+        "laminas/laminas-text": "^2.11",
+        "laminas/laminas-captcha": "^2.17",
+        "laminas/laminas-mvc-i18n": "^1.7",
+        "laminas/laminas-session": "^2.9",
+        "laminas/laminas-math" : "^3.7"
     },
     "autoload": {
         "psr-4": {
