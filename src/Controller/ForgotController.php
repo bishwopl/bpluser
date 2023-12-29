@@ -65,7 +65,7 @@ class ForgotController extends AbstractActionController {
     }
 
     public function resetPasswordAction() {
-        $userId = (int) $this->params()->fromRoute('userId', 0);
+        $userId = $this->params()->fromRoute('userId', 0);
         $token = (string) $this->params()->fromRoute('token', '');
         $resetRecord = $this->bplUserService->getResetRecord($userId, $token);
         

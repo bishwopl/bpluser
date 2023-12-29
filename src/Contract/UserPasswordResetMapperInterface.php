@@ -62,6 +62,6 @@ interface UserPasswordResetMapperInterface {
      * @param string $token
      * @return \BplUser\Contract\UserPasswordResetInterface $resetRecord
      */
-    public function getResetRecordByUseIdToken(int $userId, string $token);
+    public function getResetRecordByUserIdAndToken(string|int $userId, string $token);
     
 }

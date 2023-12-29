@@ -4,6 +4,7 @@ namespace BplUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use BplUser\Contract\UserPasswordResetInterface;
+use BplUser\Contract\BplUserInterface;
 
 /**
  * UserPasswordReset
@@ -66,7 +67,7 @@ class UserPasswordReset implements UserPasswordResetInterface
      *
      * @return UserPasswordReset
      */
-    public function setRequestTime(\DateTime $requestTime)
+    public function setRequestTime(\DateTimeInterface  $requestTime)
     {
         $this->requestTime = $requestTime;
 
@@ -90,7 +91,7 @@ class UserPasswordReset implements UserPasswordResetInterface
      *
      * @return UserPasswordReset
      */
-    public function setUser($user = null)
+    public function setUser(BplUserInterface $user)
     {
         $this->user = $user;
 
@@ -102,7 +103,7 @@ class UserPasswordReset implements UserPasswordResetInterface
      *
      * @return \BplUser\Contract\BplUserInterface
      */
-    public function getUser()
+    public function getUser() : BplUserInterface
     {
         return $this->user;
     }

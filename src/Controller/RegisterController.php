@@ -55,6 +55,7 @@ class RegisterController extends AbstractActionController {
         $vm = new ViewModel();
 
         $user = false;
+        $failed = false;
         $post = $this->getRequest()->getPost()->toArray();
         $this->registrationForm->setData($post);
         $this->registrationForm->bind($this->userEntity);
@@ -64,6 +65,7 @@ class RegisterController extends AbstractActionController {
                 $this->userEntity = $this->registrationForm->getObject();
                 $user = $this->bplUserService->register($this->userEntity);
             } catch (\Exception $ex) {
+                $failed = true;
                 $this->registrationForm->get('email')->setMessages([$ex->getMessage()]);
             }
         }
@@ -82,12 +84,21 @@ class RegisterController extends AbstractActionController {
                 $this->bplUserService->addDefaultRoles($user);
                 $user = $this->auth()->getIdentity();
             } catch (\Exception $ex) {
+                $failed = true;
                 $this->registrationForm->get('email')->setMessages([$ex->getMessage()]);
             }
         }
 
         if ($user !== false && $this->options->getLoginAfterRegistration() == false) {
             $this->auth()->clearIdentity();
+        }
+        
+        if($failed){
+            echo 'Failed';
+            if(is_object($user)){
+                echo 'Deleting user';
+                $this->auth()->deleteUserRecord($user);
+            }
         }
 
         /**

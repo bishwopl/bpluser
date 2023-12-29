@@ -36,17 +36,17 @@ interface BplUserServiceInterface {
      * @param string $token
      * @return \BplUser\Contract\UserPasswordResetInterface $resetRecord
      */
-    public function getResetRecord(int $userId, string $token);
+    public function getResetRecord(string|int $userId, string $token);
 
     /**
      * Remove all user password reset requests
      * @param int $userId
      */
-    public function removePreviousResetRequests(int $userId);
+    public function removePreviousResetRequests(string|int $userId);
 
     /**
      * Delete all forgot password requests which are expired
      */
     public function cleanExpiredForgotRequests();
-
+    
 }

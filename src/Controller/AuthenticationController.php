@@ -67,19 +67,20 @@ class AuthenticationController extends AbstractActionController {
             $credential = $post['credential'];
 
             try {
+                
                 $user = $this->auth()->authenticate($identity, $credential);
+                $user->getEmail();
                 if (
                         $user instanceof \CirclicalUser\Provider\UserInterface 
                         && $this->options->getEnableUserState() 
-                        && !in_array($user->getState(), $this->options->getAllowedLoginStates())
+                        && !in_array((int)$user->getState(), $this->options->getAllowedLoginStates())
                 ) {
                     $this->auth()->clearIdentity();
                     throw new \Exception("Your account is in disabled state !");
                     //return $this->forward()->dispatch(AuthenticationController::class, ['action' => 'logout']);
                 }
-            
-                $session = new Container($user->getId() . '_lastActivityTimestamp');
-                $session->lastActivityTimestamp = time();
+                //$session = new Container($user->getId() . '_lastActivityTimestamp');
+                //$session->lastActivityTimestamp = time();
             } catch (\CirclicalUser\Exception\NoSuchUserException $ex) {
                 $this->loginForm->get('identity')->setMessages(['Username doesnot exist !']);
             } catch(\CirclicalUser\Exception\BadPasswordException $ex) {
@@ -87,7 +88,6 @@ class AuthenticationController extends AbstractActionController {
             } catch(\Exception $ex) {
                 $this->loginForm->get('identity')->setMessages([$ex->getMessage()]);
             }
-            
             $this->retrunIfLoggedIn();
         }
 
@@ -115,6 +115,7 @@ class AuthenticationController extends AbstractActionController {
     protected function retrunIfLoggedIn() {
         $user = $this->auth()->getIdentity();
         $redirectUrl = $this->getLogInUrl();
+        
         if ($user !== NULL) {
             return $this->redirect()->toUrl($redirectUrl);
         }

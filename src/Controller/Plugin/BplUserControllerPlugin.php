@@ -12,6 +12,8 @@ use CirclicalUser\Service\AuthenticationService;
 use CirclicalUser\Provider\UserInterface;
 use CirclicalUser\Mapper\AuthenticationMapper;
 use CirclicalUser\Mapper\UserMapper;
+use CirclicalUser\Provider\UserProviderInterface;
+use CirclicalUser\Provider\AuthenticationProviderInterface;
 use CirclicalUser\Service\AccessService;
 
 class BplUserControllerPlugin extends AbstractPlugin {
@@ -22,19 +24,19 @@ class BplUserControllerPlugin extends AbstractPlugin {
     private $authenticationService;
 
     /**
-     * @var \CirclicalUser\Service\AccessService
+     * @var AccessService
      */
     private $accessService;
 
     /**
      *
-     * @var CirclicalUser\Mapper\AuthenticationMapper 
+     * @var AuthenticationMapper 
      */
     private $authenticationMapper;
     
     /**
      *
-     * @var CirclicalUser\Mapper\UserMapper 
+     * @var UserMapper 
      */
     private  $userMapper;
 
@@ -47,8 +49,8 @@ class BplUserControllerPlugin extends AbstractPlugin {
     public function __construct(
             AuthenticationService $authenticationService, 
             AccessService $accessService,
-            AuthenticationMapper $authenticationMapper, 
-            UserMapper $userMapper) {
+            AuthenticationProviderInterface $authenticationMapper, 
+            UserProviderInterface $userMapper) {
         $this->authenticationService = $authenticationService;
         $this->accessService = $accessService;
         $this->authenticationMapper = $authenticationMapper;
@@ -110,4 +112,14 @@ class BplUserControllerPlugin extends AbstractPlugin {
     public function isAllowedAction(string $controllerName, string $action): bool{
         return $this->accessService->canAccessAction($controllerName, $action);
     }
+    
+    public function deleteUserRecord(UserInterface $user){
+        $auth = $user->getAuthenticationRecord();
+        if(is_object($auth)){
+            $this->authenticationMapper->delete($auth);
+        }
+        $this->userMapper->delete($user);
+    }
+    
+    
 }

@@ -1,6 +1,8 @@
 <?php
 
 namespace BplUser\Contract;
+use BplUser\Contract\BplUserInterface;
+use DateTimeInterface;
 
 /**
  * 
@@ -8,15 +10,15 @@ namespace BplUser\Contract;
  */
 interface UserPasswordResetInterface {
 
-    public function setUser($user);
+    public function setUser(BplUserInterface $user);
 
-    public function getUser();
+    public function getUser() : BplUserInterface;
 
-    public function setRequestKey($requestKey);
+    public function setRequestKey(string $requestKey);
 
     public function getRequestKey();
 
-    public function setRequestTime(\DateTime $requestTime);
+    public function setRequestTime(DateTimeInterface $requestTime);
 
     public function getRequestTime();
 }

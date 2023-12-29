@@ -97,7 +97,7 @@ class UserPasswordResetMapper implements UserPasswordResetMapperInterface {
     /**
      * {@inheritDoc}
      */
-    public function getResetRecordByUseIdToken(int $userId, string $token) {  
+    public function getResetRecordByUserIdAndToken(string|int $userId, string $token) {  
         return $this->getEntityRepository()->findOneBy([
             'user'     => $userId,
             'requestKey' => $token

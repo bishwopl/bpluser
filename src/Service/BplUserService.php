@@ -150,15 +150,15 @@ class BplUserService implements BplUserServiceInterface {
     /**
      * {@inheritDoc}
      */
-    public function getResetRecord(int $userId, string $token) {
+    public function getResetRecord(string|int $userId, string $token) {
         $this->passwordResetMapper->removeOlderRequests($this->options->getResetExpire());
-        return $this->passwordResetMapper->getResetRecordByUseIdToken($userId, $token);
+        return $this->passwordResetMapper->getResetRecordByUserIdAndToken($userId, $token);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removePreviousResetRequests(int $userId) {
+    public function removePreviousResetRequests(string|int $userId) {
         $this->passwordResetMapper->removeByUserId($userId);
     }
 
