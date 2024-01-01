@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "~8.0.0 || ~8.1.0 || ~8.2.0",
+        "php": "^8.2",
         "saeven/zf3-circlical-user": "0.3.2",
         "phpmailer/phpmailer": "^6",
         "laminas/laminas-text": "^2.11",
