@@ -46,7 +46,8 @@ return [
             Form\ChangeProfile::class => Form\Factory\ChangeProfileFormFactory::class,
             Collector\BplUserCollector::class => Collector\Factory\BplUserCollectorFactory::class,
             Mapper\UserPasswordResetMapper::class => Mapper\Factory\UserPasswordResetMapperFactory::class,
-            Listener\UserEntityListener::class => Listener\Factory\UserEntityListenerFactory::class
+            Listener\UserEntityListener::class => Listener\Factory\UserEntityListenerFactory::class,
+            \CirclicalUser\Mapper\GroupPermissionMapper::class => Mapper\Factory\GroupPermissionMapperFactory::class,
         ],
     ],
     'doctrine' => [
